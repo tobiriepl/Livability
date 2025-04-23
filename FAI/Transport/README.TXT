@@ -1,1 +1,0 @@
-The query result is empty, and the geometric type of the features is unknwon:an empty point shapefile has been created to fill the zip file
