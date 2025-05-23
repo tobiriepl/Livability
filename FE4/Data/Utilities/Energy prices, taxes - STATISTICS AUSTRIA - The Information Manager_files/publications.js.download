@@ -1,0 +1,49 @@
+$(document).ready(function() {
+
+  /**
+   * if user clicks on basket icon -> submit publication cart form to add publication to the cart
+   */
+  $('body').on('click', '.addToBasket', function() {
+    a_element = $(this);
+    $('#addedPublications').val(a_element.data('producttype'));
+    $('form#publicationForm').submit();
+
+    // show cart menu item in meta nav after adding a item in the cart
+    $cart_metnav = $('.meta-nav__item[data-page-id="'+$('input[name="cart_pid"]').val()+'"]');
+    $cart_metnav.removeClass('d-none');
+    $cart_metnav.find('.badge--cart').removeClass('d-none');
+    let old_amount = parseInt($cart_metnav.find('.badge--cart__amount').text());
+    $cart_metnav.find('.badge--cart__amount').text(old_amount + 1);
+
+    /*if ($('.publications__table').length > 0) {
+      var offset = a_element.offset();
+      var offsetContainer = $('.publications__table').offset();
+      $('.form-message').css('top',offset.top - offsetContainer.top);
+    } else {
+      $('.form-message').css('top','50%');
+    }*/
+  });
+
+
+});
+
+function initPublicationTable() {
+
+  publicationsTable = $('.publications__table:not(.doNotDatatable)').DataTable({
+    "dom": "tp",
+    "search": {regex: true},
+    "columnDefs": [ {
+      "targets"  : 'no-sort',
+      "orderable": false,
+    }],
+    "pagingType": 'ellipses',
+    "bLengthChange": false,
+    "info": false,
+    "language": {
+      "url": "/typo3conf/ext/sa_collection/Resources/Public/JavaScript/datatables.german.json"
+    },
+    "bAutoWidth": false
+  });
+  //$('.publications__table').find('.d-none-after').addClass('d-none').removeClass('d-none-after'); // publication list needs this
+  return publicationsTable;
+}

@@ -1,0 +1,1 @@
+$(document).ready(function(){var a=document.getElementById("vie_logout");if(a){a.onclick=function(c){c=b();return c}}function b(){var c=document.getElementById("dl-logout-link");if(c){window.location.href=c.href;return false}else{return true}}});

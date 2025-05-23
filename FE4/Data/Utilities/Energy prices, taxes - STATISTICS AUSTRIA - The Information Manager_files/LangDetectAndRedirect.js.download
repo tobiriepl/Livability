@@ -1,0 +1,24 @@
+const is_root = window.location.pathname == '/';
+const is_rootEN = window.location.pathname == '/en' || window.location.pathname == '/en/';
+let defaultLang = window.sessionStorage.getItem('lang');
+const userLang = navigator.language.substring(0, 2);
+
+if (is_root || is_rootEN) {
+    if (defaultLang === null) {
+        defaultLang = 'de';
+
+        if (userLang === 'en') {
+            defaultLang = 'en';
+        }
+
+        window.sessionStorage.setItem('lang', defaultLang);
+
+        if (defaultLang === 'de' && is_root === false) {
+            window.location.href = '/';
+        } else {
+            if (defaultLang !== 'de' && is_root === true) {
+                window.location.href = '/en';
+            }
+        }
+    }
+}

@@ -1,0 +1,459 @@
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip();
+
+  var table;
+  var initDatatableFilter = false;
+
+  if($('.g-recaptcha[data-callback]').length > 0) {
+    handleSubmitButtonAtRecaptcha(null); // if a form has google recaptcha, then disable submit button
+  }
+
+   function initDrawHandler() {
+    // use event from draw to hide columns afterwards, otherwise width of table is wrong or data are again shown after sorting
+    $('.dataTable').on('draw.dt', function () {
+      //console.log($(this).attr('class'));
+      $(this).find('.d-none-after').addClass('d-none');
+
+      // hide pagination if it is only 1 page
+      var pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate');
+      if(pagination.find('.pagination--numbers li').length <= 1) {
+        pagination.hide();
+      } else {
+        pagination.show();
+      }
+    });
+  }
+
+  function initGeneralDataTablesFilter() {
+
+    /************************************************** DATATABLES *************************************************/
+    /********** Date range ***********/
+    // Refilter the table
+    $('#date_from, #date_until').on('change', function () {
+
+      // disable at "date until" days which are lower than at 'date from'
+      if($(this).attr('id') == 'date_from') {
+        $('#date_until').attr('min', $(this).val());
+      } else {
+        $('#date_from').attr('max', $(this).val());
+      }
+
+      if($('#date_from').val() > $('#date_until').val()) {
+        $('#date-error-msg').removeClass('d-none');
+      } else {
+        $('#date-error-msg').addClass('d-none');
+      }
+
+      table.draw();
+      preselectPage();
+    });
+
+    $.fn.dataTable.ext.search.push(
+      function (settings, data, dataIndex) {
+
+        if ($('#date_from').length == 0 && $('#date_until').length == 0) {
+          return true;
+        }
+
+        var min = moment($('#date_from').val(), 'YYYY-MM-DD');
+        var max = moment($('#date_until').val(), 'YYYY-MM-DD');
+        var createdAt = data[0] || 0; // Our date column in the table
+        var format = $('input[data-date-format]').data('date-format');
+        var dateOfElement = moment(createdAt, format);
+
+        if (moment(dateOfElement).isSameOrAfter(min) && moment(dateOfElement).isSameOrBefore(max)) {
+          return true;
+        }
+        return false;
+      }
+    );
+
+    /********** Checkbox filter ***********/
+    $('input.datatable-checkbox').each(function (i) {
+
+      $(this).on('change', function () {
+
+        var searchValues = [];
+        $allCheckboxesOfGroup = $(this).closest('form').find('[name="' + $(this).attr('name') + '"]');
+        $allCheckboxesOfGroup.each(function (index, element) {
+
+          if ($(element).prop('checked')) {
+            searchValues.push($(element).val());
+          }
+        });
+
+        table.column($(this).data('index')).search(searchValues.join('|'), true, false).draw();
+        preselectPage();
+
+      });
+    });
+
+    /********** Own searchbox ***********/
+    $('#searchword').keyup(function () {
+      table.search($(this).val()).draw();
+      preselectPage();
+    });
+
+
+    /********** Selectbox filter ***********/
+    // datatables filter configuration for select boxes
+    // usually value of select will be used, alternative also the text can be used (with data-useText = 1)
+    $('select[data-datatable-filter="1"]').on('change', function() {
+
+      var searchWord = $(this).val();
+      if($(this).data('datatable-use-text') == '1') {
+        searchWord = $(this).find('option:selected').text();
+      }
+      // if "please choose" was selected -> reset searchword
+      if(!$(this).val() || $(this).val() == 0) {
+        searchWord = '';
+      }
+      publicationsTable.column($(this).data('index')).search(searchWord, false, false).draw();
+    });
+
+    /************************************************** CATEGORIES *************************************************/
+
+    // render drop down for category level 1, based on level 0
+    $('#categoriesLevel0').on('change', function () {
+      // if nothing change (e.g. if only trigger was done via code) then no request should be done and no value should be removed
+      if ($(this).val() != $(this).data('prev')) {
+        renderSubCategories(1);
+        $('#categoriesLevel2').find('option').not(':first').remove();
+      }
+    });
+
+    $('#categoriesLevel1').on('change', function () {
+      // if nothing change (e.g. if only trigger was done via code) then no request should be done and no value should be removed
+      if ($(this).val() != $(this).data('prev')) {
+        $('#selectedCategoryLevel').val(null);
+        renderSubCategories(2);
+      }
+    });
+
+    $('#categoriesLevel2').on('change', function () {
+      searchForCategory();
+    });
+
+
+    /**
+     * request category dropdown based on the category level and selected id
+     * level: e.g. level 0: 'Tourismus und Verkehr'; level 1: 'Tourismus'
+     * id: 'Tourismus und Verkehr' has id: 4
+     * @param levelOfSubcategory
+     */
+    function renderSubCategories(levelOfSubcategory) {
+      var catObj = $('#categoriesLevel' + (levelOfSubcategory - 1));
+      if (catObj.val() == null) {
+        return;
+      }
+      catObj.data('prev', catObj.val()); // set new value at data-prev, to compare next time if really a change was done
+
+      $.ajax({
+        async: "true",
+        url: $('#categoriesLevel0').data('linktoajax'),
+        type: "POST",
+        data: {
+          'tx_sacollection_collection[filter][categoryId]': $('#categoriesLevel' + (levelOfSubcategory - 1)).val(),
+          'tx_sacollection_collection[filter][level]': levelOfSubcategory
+        },
+        success: function (data) {
+          $('#categoriesLevel' + levelOfSubcategory).html(data);
+          $('#selectedCategoryLevel').val(null);
+          handleCategoryState();
+          searchForCategory();
+        }
+      });
+    }
+
+
+    /**
+     * deprecated: Minicalender (homepage) has no form anymore
+     * this function request for data based on the filter
+     */
+    $('.container form[data-ajax="minicalendar"]').on('submit', function (e) {
+
+      e.preventDefault();
+      var type = $(this).attr('id');
+
+      $.ajax({
+        async: "true",
+        url: $(this).attr("action"),
+        type: "POST",
+        data: $(this).serialize(),
+        success: function (data) {
+          var newList = $(data).find('ul');
+          $('ul#' + type).html(newList.html());
+          $('a.toggleBoxes').html($(data).find('a.toggleBoxes').html());
+
+        }
+      });
+    });
+  }
+
+  /**
+   * datatables: category filter
+   * each dropdown is one part of the rendered category path, e.g.:
+   * Arbeitsmarkt / Erwerbsstatus / Erwerbsstatus - Hauptaktivität
+   *
+   * we need to know when a title is fishied, because otherwise
+   * Arbeitsmarkt / Erwerbsstatus / Erwerbsstatus - Hauptaktivität
+   * is also found when user search for
+   * Arbeitsmarkt / Erwerbsstatus / Erwerbsstatus
+   * therefor the last category ist marked with ;
+   *
+   * some has more then 3 levels - see below. Therefore we have to check for / or ;
+   * we would also be okay if the last on get also ' / ' then ;
+   * but breadcrump usually also doesn't end with the same charater   *
+   *
+   * Arbeitsmarkt / Arbeitskosten und Tariflohnindex / Arbeitskosten / Arbeitkosten
+   * Arbeitsmarkt / Arbeitskosten und Tariflohnindex / Arbeitskosten / Arbeitkostenindex
+   */
+  function searchForCategory() {
+    var searchValue = '';
+    if ($('#categoriesLevel0').val() != '0') {
+      searchValue = $('#categoriesLevel0 option:selected').text();
+    }
+    if ($('#categoriesLevel1').val() != '0') {
+      searchValue += ' / ' + $('#categoriesLevel1 option:selected').text();
+    }
+    if ($('#categoriesLevel2').val() != '0') {
+      searchValue += ' / ' + $('#categoriesLevel2 option:selected').text() + ' / ';
+    }
+
+    if(searchValue == '') {
+      table.columns('.category').search('', false, false).draw();
+    } else {
+      table.columns('.category').search(searchValue, false, false).draw();
+    }
+    preselectPage();
+
+  }
+
+
+  /**
+   * this function disabled (gray out) dropdowns - if no value of "parent" dropdown is selected
+   */
+  function handleCategoryState() {
+    $('select[id^="categoriesLevel"]').each(function(key, element){
+      if($(element).children('option').length < 2) {
+        $(element).attr('disabled','disabled');
+      } else {
+        $(element).removeAttr('disabled');
+      }
+    });
+  }
+
+  /************************************************** Submit *************************************************/
+
+  // prevent form submit
+  // datatables is used for list -> so extension must be cached
+  // if the form would be really submitted, set filter could be cached from typo3
+  $('#filterForm[data-nousualsubmit="1"]').on('submit', function(e){
+    e.preventDefault();
+
+    if($('input[name="tx_publications_publications[filter][searchword]"]').length > 0) {
+      searchwordObj = $('input[name="tx_publications_publications[filter][searchword]"]');
+
+      // search word didn't changed -> so return
+      if(searchwordObj.val() == searchwordObj.data('prev')) {
+        return;
+      }
+      // user searched for a word
+      else if(searchwordObj.val().length > 0) {
+        var url = $('#loadDataWithAjax').attr("href");
+        var data = {
+          'tx_publications_publications[filter][searchword]': $('input[name="tx_publications_publications[filter][searchword]"]').val()
+        };
+      }
+      // user reset search word new (so last/previous request wasn't already empty)
+      else if(searchwordObj.val() == '' && searchwordObj.val() != searchwordObj.data('prev')) {
+        var url = $('#loadDefaultListWithAjax').attr("href");
+        var data = null;
+      }
+
+      searchwordObj.data('prev', searchwordObj.val());
+
+      $.ajax({
+        async: "true",
+        url: url,
+        type: "POST",
+        data: data,
+        success: function (data) {
+          $('table.publications__table').DataTable().clear();
+          $('table.publications__table').DataTable().destroy();
+          $('div.frame-type-publications').html($(data).find('div.frame-type-publications').html());
+          table = initPublicationTable();
+          initDrawHandler();
+          $('#filterForm select').trigger('change');
+        }
+      });
+    }
+
+  });
+
+
+  /************************************************** process *************************************************/
+  if($('table.tx_announcement').length > 0) {
+    table = initAnnouncementDataTable();
+    initDatatableFilter = true;
+    $('#date_until').attr('min', $('#date_from').val()); // disable all dates which are before "date_from"
+    $('#date_from').attr('max', $('#date_until').val()); // disable all dates which are after "date_until"
+    $('#date_from').attr('min', $('#date_from').val()); // disable all dates where data are not loaded
+
+    // for landing page, when accordion with datatable is collapsed (e.g. for responsive behaviour)
+    $('.accordion__body').each(function(){
+      $(this).on('shown.bs.collapse', () => {
+        if($(this).find('.tx_announcement.responsive').length > 0 ) {
+          $('table.tx_announcement').DataTable().columns.adjust();
+        };
+      });
+    });
+  }
+
+  if($('.publications__table:not(.doNotDatatable)').length > 0) {
+    table = initPublicationTable();
+    if($('#filterForm select#categoriesLevel2 option:selected').val() > 0) {
+      searchForCategory();
+    }
+    initDatatableFilter = true;
+  }
+
+  initDrawHandler(); // for ALL datatables (because of pageination)
+  if(initDatatableFilter == true) {
+
+    // filter must only be initialized if filter form exist
+    if($('form[name="filter"]').length > 0) {
+      initGeneralDataTablesFilter();
+      handleCategoryState();
+    }
+  }
+
+  /*** close search box when user clicks outside the search box ***/
+  $(window).click(function() {
+    $('#searchWrapper').collapse('hide');
+  });
+
+  $('.header__search').click(function(event){
+    event.stopPropagation();
+  });
+
+
+
+  /*** focus on search-header ***/
+
+  $(".header__search-toggle").click(function(){
+
+
+    if($(this).attr("aria-expanded")==='false'){
+      setTimeout(function(){
+        $(".header__search").focus();},100);
+    }
+  });
+
+    /*** close search box when user clicks outside the search box ***/
+  $(window).click(function() {
+    $('#searchWrapper').collapse('hide');
+  });
+
+  $('.header__search').click(function(event){
+    event.stopPropagation();
+  });
+
+
+  /*** close search box when user press ESC ***/
+
+  jQuery(document).keyup(function(ev){
+    if(ev.keyCode == 27) {
+      $('#searchWrapper').collapse('hide');
+      $('#merkliste_notification').hide();
+    }
+  });
+
+  /*** fixed bug in MacBook: dropdown-menu didn't disappeared on click on searchbar***/
+  $('.header__search-toggle').click(function(event){
+    $("li").removeClass('ls-toggled');
+  });
+
+  /*** close merkliste_notification with close btn ***/
+  $('.i-close').click(function(event){
+    $("#merkliste_notification").hide();
+  });
+
+  /*** close search box when user clicks outside the search box ***/
+  $(window).click(function() {
+    $('#merkliste_notification').hide();
+  });
+
+  /** detect again if link and url are equals because no event is triggered by the browser in this case */
+  $('a[href*="#"]').click(function() {
+    if($(this).attr("href") == window.location.href || $(this).attr("href") == window.location.hash){
+      handleHashParam();
+    }
+  });
+
+
+  /*** intern links - scroll if section is collapsed ***/
+  $(window).on("load", function() {
+    handleHashParam();
+  });
+});
+
+
+/************************************************** google recaptcha ***********************************************/
+function handleSubmitButtonAtRecaptcha(token) {
+  if(token == null || token == '') {
+    $('.g-recaptcha').parents('form').find('input[type="submit"]').attr('disabled', 'disabled');
+  } else {
+    $('.g-recaptcha').parents('form').find('input[type="submit"]').removeAttr('disabled');
+  }
+}
+
+function handleHashParam() {
+
+  if(window.location.hash.length == 0) {
+    return;
+  }
+  var anchorLink = window.location.hash.slice(1);
+
+  var ids = new Array(); // create an array of all id
+  $('[id]').each(function() {
+    ids.push($(this).attr("id"));
+  });
+
+  var isFound = ids.includes(anchorLink); //check if there is a match href/id
+  console.log(isFound);
+
+  if(isFound){ //if the match exists, then go to the grandparent, expand the section and scroll to the id
+    var thisId = anchorLink;
+    $('#' + thisId).parents(".accordion__card").children(".accordion__header").children(".accordion__toggle").attr("aria-expanded", "true").removeClass("collapsed");
+    $('#' + thisId).parents(".accordion__card").children(".accordion__body").addClass("show");
+
+    // if anchor is at accordion__card itself, like "presses", "furtherData"
+    if($('#' + thisId).hasClass('accordion__card')) {
+      $('#' + thisId).children(".accordion__header").children(".accordion__toggle").attr("aria-expanded", "true").removeClass("collapsed");
+      $('#' + thisId).children(".accordion__body").addClass("show");
+    }
+
+    let elementPosition = $('#' + thisId).offset().top;
+    let breadcrumbHeight = 0;
+    if($('.breadcrumb__nav').length > 0) {
+      breadcrumbHeight = ($('.breadcrumb__nav').outerHeight() + 10);
+    }
+
+    $([document.documentElement, document.body]).animate({
+        scrollTop: (elementPosition - breadcrumbHeight)
+      },
+      400,
+      'linear',
+      function() {
+        $(".header").addClass("js-collapsed");
+
+        // sometimes stickyHeaderScrollHandler is triggered later and remove js-collapsed again, so therefore:
+        setTimeout(function() {
+          $(".header").addClass("js-collapsed");
+        }, 600);
+      }
+    );
+
+  }
+};

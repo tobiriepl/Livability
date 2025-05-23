@@ -1,0 +1,81 @@
+$(function() {
+
+  $('#resetButton').on('submit', function(e){
+    e.preventDefault();
+    $('#resetForm').trigger('submit');
+  });
+
+});
+
+function initAnnouncementDataTable() {
+  table = $('.tx_announcement').DataTable({
+    "dom": "tp",
+    "search": {regex: true},
+    "columnDefs": [ {
+      "targets"  : 'no-sort',
+      "orderable": false,
+    }],
+    "pagingType": 'ellipses',
+    "bLengthChange": false,
+    "info": false,
+    "language": {
+      "url": "/typo3conf/ext/sa_collection/Resources/Public/JavaScript/datatables.german.json"
+    },
+    "bAutoWidth": false,
+    "responsive": true,
+    "initComplete": function(settings, json) {
+      $('#filterForm input[name="tx_announcement_calendar[filter][type]"]:checked').trigger('change');
+      if($('.init-msg-announcements').length > 0) {
+        $('.init-msg-announcements').next().removeClass('d-none');
+        $('#loading-status').addClass('sr-only').text($('#loading-status').data('loaded'));
+        $('.spinner-border').remove();
+      }
+    },
+    "drawCallback": function( settings ) {
+      var api = this.api();
+      $('#datatableEntriesAmount').text(api.rows({search:'applied'}).count());
+    }
+  });
+
+  $('table.tx_announcement').removeClass('d-none');//.css('width', '100%');
+
+  return table;
+}
+
+function isAnnouncementPage() {
+  if($('table.tx_announcement').length > 0) {
+    return true;
+  }
+  return false;
+}
+
+// at announcement, we have to change the order of the entries
+// so initial announcement and press release are shown, at page with the current date
+// if only press release should be shown, the page with the newest date must be shown
+function preselectPage() {
+    if(isAnnouncementPage()) {
+      // press release
+      if($('input.datatable-checkbox:checked').val() == '2') {
+        table.order([0,'desc']).page(0).draw(false);
+        //table.order([0,'asc']).page('last').draw(false);
+      } else {
+
+        table.order([[0,'asc'], [2, 'asc']]);
+        let tomorrow  = moment().add(1,'days').startOf('day'); // tomorrow 00:00
+        var tomorrowMoment = moment(tomorrow, 'YYYY-MM-DD');
+        var resultIndex = 0;
+        table.rows({search:'applied', order: 'index'}).every( function ( rowIdx, tableLoop, rowLoop ) {
+          dateSort = $(this.node()).find('td').data('sort');
+          if(resultIndex == 0 && moment(dateSort).isSameOrAfter(tomorrowMoment)) {
+            resultIndex = rowLoop;
+            return false;
+          }
+        } );
+        table.order([[0,'asc'], [2, 'asc']]).page(calculatePage(resultIndex)).draw( false );
+      }
+    }
+}
+
+const calculatePage = function(index){
+  return parseInt(index / 10);
+}

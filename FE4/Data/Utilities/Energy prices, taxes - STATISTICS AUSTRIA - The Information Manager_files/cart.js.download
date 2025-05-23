@@ -1,0 +1,386 @@
+// global function
+;(function (window, document, $, undefined) {
+  'use strict';
+
+  var W = $(window),
+    U = typeof undefined,
+    D = $(document),
+    toTopEl = '#to-top',
+    $navBar = $('.nav-bar');
+
+  D.ready(function () {
+    $('[data-add-to-cart="form"]').click(function (e) {
+      e.preventDefault();
+      $.get(
+        $(this).attr('href'),
+        function(data){
+          $('[data-add-to-cart="result"]').html(data);
+        });
+    });
+
+    // modified by Statistik:
+    handleVisibilityPurchasingGroup();
+    triggerShippingMethodRefresh();
+
+  });
+
+  D.ajaxComplete(function () {
+    $('[data-add-to-cart-uri]').submit(function (e) {
+      e.preventDefault();
+      $('[data-add-to-cart-uri]').unbind( "submit" );
+
+      var form = $(this);
+      var url = form.attr('data-add-to-cart-uri');
+
+      var data = new FormData( this );
+      var submitButton = $("button[type='submit']", form);
+      data.append($(submitButton).attr('name'), $(submitButton).attr('value'));
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function(data)
+        {
+          handleAddToCartSuccessResponse(form, data);
+        }
+      });
+
+    });
+  });
+
+}(window, document, jQuery));
+
+// postParams modified by Statistik:
+function updateCountry(billingCountry, shippingCountry) {
+  var postParams = {
+    "tx_cart_cart[shipping_same_as_billing]": $("#shipping-same-as-billing").is(":checked"),
+    "tx_cart_cart[billing_country]": billingCountry,
+    "tx_cart_cart[shipping_country]": shippingCountry
+  };
+
+  $.ajax({
+    async: "true",
+    url: update_country,
+    type: "POST",
+
+    data: postParams,
+
+    success: function(data)
+    {
+      $("#form-cart").html($(data).filter("#form-cart").html());
+      $("#checkout-step-shipping-method").html($(data).filter("#checkout-step-shipping-method").html());
+      $("#checkout-step-payment-method").html($(data).filter("#checkout-step-payment-method").html());
+      $("#checkout-step-summary").html($(data).filter("#checkout-step-summary").html());
+    }
+  });
+}
+
+function updateCurrency(currencyCode, action) {
+  var postParams = {
+    "tx_cart_cart[currencyCode]": currencyCode
+  };
+
+  $.ajax({
+    async: "true",
+    url: action,
+    type: "POST",
+
+    data: postParams,
+
+    success: function(data)
+    {
+      $("#form-cart").html($(data).filter("#form-cart").html());
+      $("#checkout-step-shipping-method").html($(data).filter("#checkout-step-shipping-method").html());
+      $("#checkout-step-payment-method").html($(data).filter("#checkout-step-payment-method").html());
+      $("#checkout-step-coupon").html($(data).filter("#checkout-step-coupon").html());
+      $("#checkout-step-summary").html($(data).filter("#checkout-step-summary").html());
+    }
+  });
+}
+
+$("#billingAddress-country").change(function () {
+  var billingCountry = $(this).val();
+  var shippingCountry = "";
+
+  if(!$("#shipping-same-as-billing").is(":checked")) {
+    shippingCountry = $("#shippingAddress-country").val();
+  }
+
+  updateCountry(billingCountry, shippingCountry);
+});
+
+$("#shippingAddress-country").change(function () {
+  var billingCountry = $("#billingAddress-country").val();
+  var shippingCountry = $(this).val();
+
+  // modified by Statistik: (otherwise cart will set the country always back to 'AT' when user change form-order e.g. amount) [at usual print purchase]
+  if($("#shipping-same-as-billing").is(":checked")) {
+    billingCountry = $("#shippingAddress-country").val();
+  }
+
+  updateCountry(billingCountry, shippingCountry);
+});
+
+$("#shipping-same-as-billing").change(function() {
+  $("#checkout-step-billing-address").toggle(!this.checked);
+
+  var billingCountry = $("#billingAddress-country").val();
+  var shippingCountry = $("#shippingAddress-country").val();
+
+  if(!$("#shipping-same-as-billing").is(":checked")) {
+    $("#checkout-step-billing-address input, #checkout-step-billing-address select").each(function() {
+      if($(this).data("disable-shipping")) {
+        $(this).prop("disabled", false);
+      }
+    });
+  } else {
+    $("#checkout-step-billing-address input, #checkout-step-billing-address select").each(function() {
+      if($(this).data("disable-shipping")) {
+        $(this).prop("disabled", true);
+      }
+    });
+  }
+
+  updateCountry(billingCountry, shippingCountry);
+});
+
+/**
+ * cart extension needs billing address (shipping address is optional)
+ * Statistik want to have the shipping address first and optional the billing address - if it isn't the same as shipping address
+ */
+function setBillingAddressToShippingAddress() {
+
+  $("#checkout-step-billing-address input, #checkout-step-billing-address select").each(function() {
+
+    if($("#shipping-same-as-billing").is(":checked")) {
+      $(this).prop("disabled", false);
+
+      var elementName = $(this).prop('name');
+      var shippingElementName = elementName.replace('billingAddress', 'shippingAddress');
+      var shippingElement = $('[name="'+shippingElementName+'"]');
+      $(this).val($(shippingElement).val());
+    }
+    else if($('input[name="tx_cart_cart[orderItem][emailForDownload]"]').length > 0) {
+      var shippingElement = $('input[name="tx_cart_cart[shippingAddress][email]"]');
+      $(shippingElement).val($('input[name="tx_cart_cart[orderItem][emailForDownload]"]').val());
+    }
+  });
+}
+
+$(".cart-currency-selector").change(function () {
+  updateCurrency($(this).val(), $(this).closest("form").attr("action"));
+});
+
+$(".currency-selector").change(function () {
+
+  var postParams = {
+    "tx_cart_currency[currencyCode]": $(this).val()
+  };
+
+  $.ajax({
+    async: "true",
+    url: $(this).closest("form").attr("action"),
+    type: "POST",
+
+    data: postParams,
+
+    success: function(data)
+    {
+      location.reload();
+    }
+  });
+});
+
+$("#checkout-step-payment-method").on("click", ".set-payment", function(e) {
+  var url = $(this).attr("href");
+
+  $.get( url, function( data ) {
+    $("#checkout-step-shipping-method").html($(data).filter("#checkout-step-shipping-method").html());
+    $("#checkout-step-payment-method").html($(data).filter("#checkout-step-payment-method").html());
+    $("#checkout-step-summary").html($(data).filter("#checkout-step-summary").html());
+  });
+
+  e.preventDefault();
+});
+
+$("#checkout-step-shipping-method").on("click", ".set-shipping", function(e) {
+  var url = $(this).attr("href");
+
+  $.get( url, function( data ) {
+    $("#checkout-step-shipping-method").html($(data).filter("#checkout-step-shipping-method").html());
+    $("#checkout-step-payment-method").html($(data).filter("#checkout-step-payment-method").html());
+    $("#checkout-step-summary").html($(data).filter("#checkout-step-summary").html());
+    $("#form-cart").html($(data).filter("#form-cart").html());
+  });
+
+  e.preventDefault();
+});
+
+$("#be-variants-select").change(function () {
+  var special_price = $(this).children().filter(":selected").data("special-price");
+  var regular_price = $(this).children().filter(":selected").data("regular-price");
+  var special_price_percentage_discount = $(this).children().filter(":selected").data("special-price-percentage-discount");
+
+  $("#product-price .special_price .price").html(special_price);
+  $("#product-price .regular_price .price").html(regular_price);
+  $("#product-price .special_price_percentage_discount .price").html(special_price_percentage_discount);
+});
+
+$.fn.serializeObject = function()
+{
+  var o = {};
+  var a = this.serializeArray();
+  $.each(a, function() {
+    if (o[this.name] !== undefined) {
+      if (!o[this.name].push) {
+        o[this.name] = [o[this.name]];
+      }
+      o[this.name].push(this.value || "");
+    } else {
+      o[this.name] = this.value || "";
+    }
+  });
+  return o;
+};
+
+// modified by Statistik:
+function handleAddToCartSuccessResponse(form, data) {
+
+  var response = JSON.parse(data);
+  if (response.status === "200") {
+    $("#cart-preview .cart-preview-count").html(response.count);
+    $("#cart-preview .net").html(response.net);
+    $("#cart-preview .gross").html(response.gross);
+
+    if (response.count > 0) {
+      $("#cart-preview .checkout-link").show();
+    }else {
+      $("#cart-preview .checkout-link").hide();
+    }
+
+    $(document).trigger("status.cartWasChanged", [true]);
+
+    form.each(function () {
+      this.reset();
+    });
+
+    // prepare notification
+    var product = response.productsChanged['Publications_'+$('#addedPublications').val()];
+    console.log(product);
+    const el = {
+      item: product.title,
+      message: product.additional.titleOfProducttype + ' ' + form.data("notification-message") + ":",
+      link: form.data("target-link"),
+      linktext: form.data("notification-link-text"),
+      icon: 'far fa-shopping-basket'
+    }
+    setNotificationContent(el);
+
+  } else {
+    form.find('[data-ajax-error-message]').html(response.messageBody);
+    form.find('[data-ajax-error-block]').show().delay(messageTimeout).fadeOut("slow");
+  }
+}
+
+$("body").on('submit', "[data-ajax='1']", function(e) {
+  var form = $(this);
+  var serializedObject = form.serializeObject();
+
+  $.ajax({
+    async: "true",
+    url: form.attr("action"),
+    type: "POST",
+
+    data: serializedObject,
+
+    success: function(data)
+    {
+      handleAddToCartSuccessResponse(form, data);
+    }
+  });
+
+  e.preventDefault();
+});
+
+$("#form-cart").submit(function() {
+  $("input:submit").attr("disabled", true);
+});
+$("#form-order").submit(function() {
+  setBillingAddressToShippingAddress();
+  $("input:submit").attr("disabled", true);
+
+});
+$("#form-coupon").submit(function() {
+  $("input:submit").attr("disabled", true);
+});
+
+// added by Statistik
+function handleVisibilityPurchasingGroup() {
+  if($('#orderItem-einvoice').prop('checked') == true){
+    $('#orderItem-purchasing_group').removeAttr('disabled');
+    $('.einvoice-wrapper').show();
+  } else {
+    $('#orderItem-purchasing_group').attr('disabled', 'true');
+    $('.einvoice-wrapper').hide();
+  }
+}
+
+function triggerShippingMethodRefresh() {
+  if($('#form-order').length) {
+    if($('#download-country').length) {
+      updateCountry($("#billingAddress-country").val(), $("#shippingAddress-country").val());
+    }
+    // if user has first "only download" and added afterwards a print publication -> change country for shipping method
+    else if ($("#shippingAddress-country").val() == 'dw') {
+      $("#shippingAddress-country").val('at');
+      $("#shipping-same-as-billing").prop('checked', 'checked');
+      updateCountry($("#billingAddress-country").val(), $("#shippingAddress-country").val());
+      console.log('update');
+    }
+  }
+}
+
+// added by Statistik
+$("#orderItem-einvoice").change(function () {
+  handleVisibilityPurchasingGroup();
+});
+$('[name^="tx_cart_cart[quantities]"]').on('input', function(){
+ this.value=this.value.replace(/\D/g,'');
+})
+
+// added by Statistik
+function getProductInfo(producttype_uid, form, messageTimeout) {
+  $.ajax({
+    async: "true",
+    url: form.data("productinfo"),
+    type: "POST",
+    data: {
+      'tx_publications_publications[filter][producttype_uid]': producttype_uid
+    },
+    success: function(data)
+    {
+      $('.form-message').find('[data-ajax-productinfo-message]').html(data);
+      $('#trigger-basket-modal').click();
+      $("#merkliste_notification").fadeIn();
+      setTimeout(function(){
+          $("#merkliste_notification").fadeOut();},6000);
+    }
+  });
+}
+
+// added by Statistik
+function changeShippingMethod(el) {
+  var shopping_id = $(el).attr('id');
+  $('a[data-shippingid="'+shopping_id+'"]').click();
+  $('div#checkout-step-shipping-method input[type="checkbox"]:not(#'+shopping_id+')').each(function(index, element){
+    $(element).prop('checked','');
+  });
+}
+
+// added by Statistik
+$('form#form-cart[name="orderItem"] input').change(function(){
+  //$('form#form-cart[name="orderItem"]').find('input[type="submit"]').click();
+});

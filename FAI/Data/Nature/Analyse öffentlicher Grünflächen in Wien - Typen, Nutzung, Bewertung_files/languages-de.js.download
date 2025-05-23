@@ -1,0 +1,27 @@
+﻿//de
+var fs_Title1 = "Schriftgr&ouml;sse:"; 
+var fs_Title2 = "Schriftgr&ouml;&szlig;e: normal"; 
+var fs_Title3 = "Schriftgr&ouml;&szlig;e: gr&ouml;&szlig;er"; 
+var fs_Title4 = "Schriftgr&ouml;&szlig;e: sehr gro&szlig;"; 
+
+//wat tabs
+var currentTabText = "Aktueller Reiter: ";
+
+//wat carousel
+var watCarouselT1 = "Optische Navigation der folgenden aktuellen Themen"; 
+var watCarouselT2 = "zur&uuml;ck";
+var watCarouselT3 = "vor";
+var watCarouselT4 = "Aktuelle Themen";
+var watCarouselT5 = "Aktuelle Themen &uuml;berspringen";
+var watCarouselT6 = "Aktuelle Themen Ende";
+
+//diverses
+var langfile_abbr_close = "Schlie&szlig;en";
+var langfile_copyright = "Foto-Credits";
+var langfile_desktop = "Desktop Version";
+var langfile_mobile = "Mobile Version";
+
+
+
+
+

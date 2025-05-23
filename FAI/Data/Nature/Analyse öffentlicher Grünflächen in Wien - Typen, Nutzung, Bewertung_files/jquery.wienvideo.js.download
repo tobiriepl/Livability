@@ -1,0 +1,730 @@
+/*
+
+ * Name: jquery.wienvideo.js
+ * Version: 1.2.3
+ * Date: 2016-09-19
+
+*/
+
+$(function () {
+	$.fn.wienvideo = function(settings) {
+		
+		/* config paths */
+		
+		
+		var c_vPrimary = "flash";
+		var subDir = ( typeof preview == 'boolean' && preview ) ? '/tv' : '/video';
+		var c_menImg = subDir +'/assets/images/menu.png';
+		var c_aboutText = "wien.at/video";
+		var c_aboutLink = "https://www.wien.gv.at/video";
+		var skinPath = subDir +'/assets/skins/wienat/wienat.xml';
+		var externWienIframeBaseUrl = c_aboutLink +"/embed/index.html?mid=";
+		var c_vImage = subDir +'/assets/images/testbild.png';
+		var c_detLinkPath = c_aboutLink +"/detail.aspx?mid=";
+		
+		/*
+		var c_vPrimary = "flash";
+		var c_menImg = "video/img/menu.png";
+		var c_aboutText = "wien.at/video";
+		var c_aboutLink = "http://www.wien.gv.at/video";
+		var skinPath = "video/skins/wienat/wienat.xml";
+		var externWienIframeBaseUrl = "http://www.web-tech.at/wien/relaunch/combi7/iframe.html?mid=";
+		var c_vImage =  "video/img/testbild.png";
+		var c_detLinkPath = "http://www.wien.gv.at/video/detail.aspx?mid=";
+		*/
+		
+		var externWienIframeWidth = "500";
+		var externWienIframeHeight = "350";
+		var externWienIframeTitle = "wien.at Video";
+		var transCnt = 0;		
+		var fullscreenCnt = 0;	
+		var embCnt = 0;		
+		var playCnt = 0;		
+		var capsCnt = 0;
+		var caps2Cnt = 0;	
+		var fullCnt = 0;	
+		
+		var vContainer = this.attr("id");
+
+		var settings = $.extend({
+			vId: 1,
+			vMId: "0",
+			vTyp: "video",
+			vCall: "default",
+			vFile: "",
+			vPrimary: c_vPrimary,
+			vSmilFile: "",
+			vM3u8File: "",
+			vImage: c_vImage,
+			vTitle: "wien.at Video",
+			vTrack: ""
+		}, settings );
+
+		var noTracks = true;
+		if (settings.vTrack && settings.vTrack != "") {
+			noTracks = false;
+		}
+		
+		if (settings.vSmilFile =="" && settings.vM3u8File =="" && settings.vTyp == "video") {
+			jwplayer(vContainer).setup({     
+			  file: settings.vFile,
+			  primary: settings.vPrimary,
+			  image: settings.vImage,
+			  title: settings.vTitle,
+			  controls: "true",
+			  width: "100%",
+			  aspectratio: "16:9",
+			  abouttext: c_aboutText,
+			  aboutlink: c_aboutLink,
+			  skin: skinPath,
+			  tracks: [{ 
+			    file: settings.vTrack, 
+			    label: "Untertitel",
+			    kind: "captions"
+			  }]
+			});
+		} else {
+			if (settings.vTyp == "video") {
+				jwplayer(vContainer).setup({
+				  sources: [{
+				      file: settings.vSmilFile
+				    },{
+				      file: settings.vM3u8File
+				    },{
+				      file: settings.vFile
+				  }],
+				  primary: settings.vPrimary,
+				  image: settings.vImage,
+				  title: settings.vTitle,
+				  controls: "true",
+				  width: "100%",
+				  aspectratio: "16:9",
+				  abouttext: c_aboutText,
+				  aboutlink: c_aboutLink,
+				  skin: skinPath,
+				  tracks: [{ 
+				    file: settings.vTrack, 
+				    label: "Untertitel",
+				    kind: "captions"
+				  }]
+				});
+			}
+			else if (settings.vTyp == "audio") {
+				jwplayer(vContainer).setup({
+				  file: settings.vFile,
+				  primary: "html5",
+				  title: settings.vTitle,
+				  width: "100%",
+				  height: "30",
+				  controls: "true",
+				  abouttext: c_aboutText,
+				  aboutlink: c_aboutLink,
+				  skin: skinPath
+				});
+			}
+		}
+			
+		function setExtControlbar(rendMode, vContainer) {
+	   	//console.log("vContainer:" + vContainer + " settings.vFile:" + settings.vFile);
+
+			var videoAreaControlsContainer = '<div id="videoAreaControlsToggle' + settings.vId + '" class="clearfix videoAreaControlsToggle emb_' + rendMode + ' typ_' + settings.vTyp + '"><a href="javascript:void(0);" aria-live="polite" role="button"><img src="' + c_menImg + '" alt="Erweiterte Filmsteuerung" title="Erweiterte Filmsteuerung" /></a></div><div id="videoAreaControls' + settings.vId + '" class="clearfix videoAreaControls emb_' + rendMode + ' typ_' + settings.vTyp + '"></div>';
+			
+			$('#' + vContainer).before(videoAreaControlsContainer);
+			
+			var trackCode1 = "";
+			if (noTracks == false) { 
+				trackCode1 = '<li><a class="vac_ccvid passive" href="javascript:void(0);" role="button" aria-live="polite">Untertitel</a></li>';
+			}
+			
+			var videoAreaControlsHtml = '<h2 class="vac_hidden">Video:</h2><ul class="clearfix">' + 
+				'<li><a class="vac_playvid active" href="javascript:void(0);" aria-live="polite" role="button">Abspielen</a></li>' +
+				'<li><a class="vac_stopvid active" href="javascript:void(0);" role="button">Anhalten</a></li>' +
+				trackCode1 +
+				'<li><a class="vac_mutevid active" href="javascript:void(0);" aria-live="polite" role="button">Ton aus</a></li>' +
+			'</ul>';
+			
+			$('#videoAreaControls' + settings.vId).html(videoAreaControlsHtml);
+			$('#videoAreaControlsToggle' + settings.vId).hide();
+				
+			//interaction
+			//migrate fix
+			$('#videoAreaControls' + settings.vId).on('click', '.vac_playvid', function(){
+    		jwplayer(vContainer).play();
+			});
+		
+			$('#videoAreaControlsToggle' + settings.vId + ' a').mousedown(function() {
+				$('#videoAreaControls' + settings.vId).fadeToggle( "fast", "linear" );
+				$(this).toggleClass('active');
+			}).focus(function() {
+				$('#videoAreaControls' + settings.vId).show();
+				$(this).attr('class', 'active');
+			});
+
+			$('#videoAreaControls' + settings.vId + ' a.vac_mutevid').focusout(function() {
+				$('#videoAreaControls' + settings.vId).hide();
+				$('#videoAreaControlsToggle' + settings.vId + ' a').attr('class', '');
+		  });
+		
+
+			jwplayer(vContainer).onPlay( function(event){
+				if (event.oldstate  == 'PAUSED' || event.oldstate == 'BUFFERING') {
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').html('Pause');
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').attr('class','vac_playvid passive');
+			  }
+			  else {
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').html('Abspielen');
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').attr('class','vac_playvid active');
+			  }
+			});
+			
+			jwplayer(vContainer).onPause( function(event){
+				if (event.oldstate  == 'PLAYING' ) {
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').html('Abspielen');
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').attr('class','vac_playvid active');
+			  }
+			  else {
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').html('Pause');
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').attr('class','vac_playvid passive');
+			  }
+			});
+			
+			jwplayer(vContainer).onIdle( function(event){
+			  if (event.oldstate  == 'PLAYING' ) {
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').html('Abspielen');
+			  	$('#videoAreaControls' + settings.vId + ' .vac_playvid').attr('class','vac_playvid active');
+			  }
+			});
+			
+			//migrate fix
+			$('#videoAreaControls' + settings.vId).on('click', '.vac_stopvid', function(){
+    		jwplayer(vContainer).stop();
+				
+				if(rendMode == "html5") {
+					$('#' + vContainer + '_controlbar span.jwplay span button').text('Abspielen');
+				}
+			});
+			
+			//migrate fix
+			$('#videoAreaControls' + settings.vId).on('click', '.vac_mutevid', function(){
+    		jwplayer(vContainer).setMute();	
+			});
+	
+			jwplayer(vContainer).onMute( function(event){
+			  if (event.mute == true) {
+			  	$('#videoAreaControls' + settings.vId + ' .vac_mutevid').html('Ton ein');
+			  	$('#videoAreaControls' + settings.vId + ' .vac_mutevid').attr('class','vac_mutevid passive');
+			  }
+			  else {
+			  	$('#videoAreaControls' + settings.vId + ' .vac_mutevid').html('Ton aus');
+			  	$('#videoAreaControls' + settings.vId + ' .vac_mutevid').attr('class','vac_mutevid active');
+			  }
+			});
+			
+			//migrate fix
+			$('#videoAreaControls' + settings.vId).on('click', '.vac_ccvid', function(){
+
+				var jwpCurrentCaptions = jwplayer(vContainer).getCurrentCaptions();
+				if(jwpCurrentCaptions == 0) {
+					jwplayer(vContainer).setCurrentCaptions(1);
+					$('#videoAreaControls' + settings.vId + ' .vac_ccvid').html('Untertitel aus');
+					$('#videoAreaControls' + settings.vId + ' .vac_ccvid').attr('class','vac_ccvid active');
+				}
+				else {
+					jwplayer(vContainer).setCurrentCaptions(0);
+					$('#videoAreaControls' + settings.vId + ' .vac_ccvid').html('Untertitel');
+					$('#videoAreaControls' + settings.vId + ' .vac_ccvid').attr('class','vac_ccvid passive');
+				}
+			});
+			
+			jwplayer(vContainer).onCaptionsChange( function(event){
+			  if (event.track  == 0) {
+			  	$('#videoAreaControls' + settings.vId + ' .vac_ccvid').html('Untertitel');
+			  	$('#videoAreaControls' + settings.vId + ' .vac_ccvid').attr('class','vac_ccvid passive');
+			  }
+			  else {
+			  	$('#videoAreaControls' + settings.vId + ' .vac_ccvid').html('Untertitel aus');
+			  	$('#videoAreaControls' + settings.vId + ' .vac_ccvid').attr('class','vac_ccvid active');
+			  }
+			});
+			
+			$('#videoAreaControlsToggle' + settings.vId).show();
+			
+			if (settings.vTyp == "video" && noTracks == true) {
+				var tempCSS = $('#' + vContainer).attr("class");
+				tempCSS = tempCSS + ' nocaps';
+				$('#' + vContainer).attr("class", tempCSS);	
+			}
+
+			if (rendMode == "flash") {
+				//no bottom controlbar
+				$('div.vAPOutContainer').attr("style", "min-height: 0; margin-bottom: 0px;");	
+			}
+			else {
+				//bottom controlbar
+				$('div.vAPOutContainer').attr("style", "min-height: 0");	
+			}
+			
+			//set tabindex
+			$('#' + vContainer).attr("tabindex", "-1");
+		}
+		
+		function pimpControls(vContainer, rendMode) {
+		  //pimp default controls
+		  
+		  //play
+		  $('#' + vContainer + '_controlbar span.jwplay span button').attr('class', 'hidetext');
+			$('#' + vContainer + '_controlbar span.jwplay span button').attr('role', 'button');
+			$('#' + vContainer + '_controlbar span.jwplay span button').attr('aria-live', 'polite');
+			$('#' + vContainer + '_controlbar span.jwplay span button').text('Abspielen');
+			$('#' + vContainer + '_controlbar span.jwplay span button').attr('title', 'Abspielen');
+			
+			//cc
+			$('#' + vContainer + '_controlbar span.jwcc span button').attr('class', 'hidetext');
+			$('#' + vContainer + '_controlbar span.jwcc span button').attr('role', 'button');
+			$('#' + vContainer + '_controlbar span.jwcc span button').attr('aria-live', 'polite');
+			$('#' + vContainer + '_controlbar span.jwcc span button').text('Untertitel aus');
+			$('#' + vContainer + '_controlbar span.jwcc span button').attr('title', 'Untertitel aus');
+			
+			//mute
+			$('#' + vContainer + '_controlbar span.jwmute span button').attr('class', 'hidetext');
+			$('#' + vContainer + '_controlbar span.jwmute span button').attr('role', 'button');
+			$('#' + vContainer + '_controlbar span.jwmute span button').attr('aria-live', 'polite');
+			$('#' + vContainer + '_controlbar span.jwmute span button').text('Ton aus');
+			$('#' + vContainer + '_controlbar span.jwmute span button').attr('title', 'Ton aus');
+			
+			//fs
+			$('#' + vContainer + '_controlbar span.jwfullscreen span button').attr('class', 'hidetext');
+			$('#' + vContainer + '_controlbar span.jwfullscreen span button').attr('role', 'button');
+			$('#' + vContainer + '_controlbar span.jwfullscreen span button').text('Vollbild');
+			$('#' + vContainer + '_controlbar span.jwfullscreen span button').attr('title', 'Vollbild');
+			
+			$('#' + vContainer + '_view span.jwcontrols img.jwlogo').attr('alt','Logo');
+			
+			if (navigator.userAgent.match(/(iPod|iPhone)/)) {
+				$('#' + vContainer + '_controlbar span.jwcc span button').hide();
+			}
+			
+			var videoAreaHeadline = '<h2 class="vac_hidden">Video</h2>';
+			
+			$('#' + vContainer).before(videoAreaHeadline);
+			
+			jwplayer(vContainer).onPlay( function(event){
+					
+				if (event.oldstate  == 'PAUSED' || event.oldstate == 'BUFFERING') {
+			  	$('#' + vContainer + '_controlbar span.jwplay span button').text('Pause');
+					$('#' + vContainer + '_controlbar span.jwplay span button').attr('title', 'Pause');
+					if (playCnt == 0) {
+						setupPiwikInteractions(2, "play");
+					}
+					playCnt++;
+					
+			  }
+			  else {
+			  	$('#' + vContainer + '_controlbar span.jwplay span button').text('Abspielen');
+					$('#' + vContainer + '_controlbar span.jwplay span button').attr('title', 'Abspielen');
+					setupPiwikInteractions(2, "pause");
+			  }
+			});
+			
+			jwplayer(vContainer).onPause( function(event){
+				if (event.oldstate  == 'PLAYING' ) {
+			  	$('#' + vContainer + '_controlbar span.jwplay span button').text('Abspielen');
+					$('#' + vContainer + '_controlbar span.jwplay span button').attr('title', 'Abspielen');
+					setupPiwikInteractions(2, "pause2");
+			  }
+			  else {
+			  	$('#' + vContainer + '_controlbar span.jwplay span button').text('Pause');
+					$('#' + vContainer + '_controlbar span.jwplay span button').attr('title', 'Pause');
+					setupPiwikInteractions(2, "play2");
+			  }
+			});
+			
+			jwplayer(vContainer).onIdle( function(event){
+			  if (event.oldstate  == 'PLAYING' ) {
+			  	$('#' + vContainer + '_controlbar span.jwplay span button').text('Abspielen');
+					$('#' + vContainer + '_controlbar span.jwplay span button').attr('title', 'Abspielen');
+					setupPiwikInteractions(2, "pause3");
+			  }
+			});
+			
+			jwplayer(vContainer).onCaptionsChange( function(event){
+			  if (event.track  == 0) {
+			  	$('#' + vContainer + '_controlbar span.jwcc span button').text('Untertitel');
+					$('#' + vContainer + '_controlbar span.jwcc span button').attr('title', 'Untertitel');
+					$('.outercapswrapper').attr('class','outercapswrapper passive');
+					if (capsCnt == 0) {
+						setupPiwikInteractions(2, "caption an");
+					}
+					capsCnt++;
+			  }
+			  else {
+			  	$('#' + vContainer + '_controlbar span.jwcc span button').text('Untertitel aus');
+					$('#' + vContainer + '_controlbar span.jwcc span button').attr('title', 'Untertitel aus');
+					$('.outercapswrapper').attr('class','outercapswrapper active');
+					if (caps2Cnt == 0) {
+						setupPiwikInteractions(2, "caption aus");
+					}
+					caps2Cnt++;	
+			  }
+			});
+			
+			jwplayer(vContainer).onMute( function(event){
+			  if (event.mute == true) {
+			  	$('#' + vContainer + '_controlbar span.jwmute span button').text('Ton ein');
+					$('#' + vContainer + '_controlbar span.jwmute span button').attr('title', 'Ton ein');
+					setupPiwikInteractions(2, "mute");
+			  }
+			  else {
+			  	$('#' + vContainer + '_controlbar span.jwmute span button').text('Ton aus');
+					$('#' + vContainer + '_controlbar span.jwmute span button').attr('title', 'Ton aus');
+					setupPiwikInteractions(2, "unmute");
+			  }
+			});
+			
+			jwplayer(vContainer).onFullscreen( function(event){
+					if (fullscreenCnt == 0) {
+						setupPiwikInteractions(2, "fullscreen");
+					}
+					fullscreenCnt++;	
+			});
+			
+			if (rendMode == "flash") {
+				//no bottom controlbar
+				$('div.vAPOutContainer').attr("style", "min-height: 0; margin-bottom: 10px;");	
+			}
+			else {
+				//bottom controlbar
+				$('div.vAPOutContainer').attr("style", "min-height: 0");	
+			}
+
+		}
+
+		function flashPiwikSetup(vContainer, rendMode) {
+		  
+			jwplayer(vContainer).onPlay( function(event){
+					
+				if (event.oldstate  == 'PAUSED' || event.oldstate == 'BUFFERING') {
+					if (playCnt == 0) {
+							setupPiwikInteractions(2, "play");
+					}
+					playCnt++;
+			  }
+			  else {
+					setupPiwikInteractions(2, "pause");
+			  }
+			});
+			
+			jwplayer(vContainer).onPause( function(event){
+				if (event.oldstate  == 'PLAYING' ) {  
+					setupPiwikInteractions(2, "pause2");
+			  }
+			  else {
+					setupPiwikInteractions(2, "play2");
+			  }
+			});
+			
+			jwplayer(vContainer).onIdle( function(event){
+			  if (event.oldstate  == 'PLAYING' ) {
+					setupPiwikInteractions(2, "pause3");
+			  }
+			});
+			
+			jwplayer(vContainer).onCaptionsChange( function(event){
+			  if (event.track  == 0) {
+					if (capsCnt == 0) {
+						setupPiwikInteractions(2, "caption an");
+					}
+					capsCnt++;
+			  }
+			  else {
+					if (caps2Cnt == 0) {
+						setupPiwikInteractions(2, "caption aus");
+					}
+					caps2Cnt++;	
+			  }
+			});
+			
+			jwplayer(vContainer).onMute( function(event){
+			  if (event.mute == true) {
+					setupPiwikInteractions(2, "mute");
+			  }
+			  else {
+					setupPiwikInteractions(2, "unmute");
+			  }
+			});
+			
+			jwplayer(vContainer).onFullscreen( function(event){
+					if (fullscreenCnt == 0) {
+						setupPiwikInteractions(2, "fullscreen");
+					}
+					fullscreenCnt++;	
+			});
+			
+			if (rendMode == "flash") {
+				//no bottom controlbar
+				$('div.vAPOutContainer').attr("style", "min-height: 0; margin-bottom: 10px;");	
+			}
+
+		}		
+		
+		/* IFRAME und Transcript*/
+		
+		function setupIframeEmbeddding(rendMode) {
+			
+			function externWienVidEmbedIframe(rendMode) {
+				
+				if (rendMode == "flash") {
+					vContainer = vContainer + '_wrapper';
+				}
+				
+				var transExists = "false";
+				if ($('#' + vContainer).parent().next().attr("class").indexOf("vAPOutTranscript") > -1) {
+					$('#' + vContainer).parent().next().attr("id", "vAPOutTranscript" + settings.vId);
+					transExists = "true";
+				}
+			
+				//transcript -> show transcript link
+				if (transExists == "true") {
+					var iFrameContainer = '<div class="vie_tv-embedCodeToggle clearfix"><a id="vie_tv-embedCodeToggle' + settings.vId + '" class="vie_tv-EmbedClass" href="javascript:void(0)">Einbetten</a> <a id="vie_tv-transcriptToggle' + settings.vId + '" class="vie_tv-TransClass" href="javascript:void(0)">Mitschrift</a></div><div id="vie_tv-embedCode' + settings.vId + '" class="vie_tv-embedCode"><fieldset><textarea onclick="this.focus(); this.select();" rows="5" cols="5" id="iFrameTextArea' + settings.vId + '" class="clearfix iFrameTextArea"></textarea>' /*<input name="vie_tv-embedCode-cb" id="vie_tv-embedCode-cb' + settings.vId + '" value="usehttps" class="vie_tv-embedCode-cb" type="checkbox" /> <label for="vie_tv-embedCode-cb' + settings.vId + '" class="vie_tv-embedCode-lab">HTTPS benutzen</label>*/ +'</fieldset></div>';
+				}	
+				//no transcript
+				else {	
+					var iFrameContainer = '<div class="vie_tv-embedCodeToggle clearfix"><a id="vie_tv-embedCodeToggle' + settings.vId + '" class="vie_tv-EmbedClass" href="javascript:void(0)">Einbetten</a></div><div id="vie_tv-embedCode' + settings.vId + '" class="vie_tv-embedCode"><fieldset><textarea onclick="this.focus(); this.select();" rows="5" cols="5" id="iFrameTextArea' + settings.vId + '" class="clearfix iFrameTextArea"></textarea>' /*<input name="vie_tv-embedCode-cb" id="vie_tv-embedCode-cb' + settings.vId + '" value="usehttps" class="vie_tv-embedCode-cb" type="checkbox" /> <label for="vie_tv-embedCode-cb' + settings.vId + '" class="vie_tv-embedCode-lab">HTTPS benutzen</label>*/ +'</fieldset></div>';
+				}			
+				
+				$('#' + vContainer).parent().after(iFrameContainer);
+				
+				// Download Button ?
+				if ($('#vie_tv-downloadButton').length) {
+					$('.vie_tv-embedCodeToggle').append($('#vie_tv-downloadButton'));
+					$('#vie_tv-downloadButton').show();
+				}
+				
+				var externWienIframeUrl = externWienIframeBaseUrl + settings.vMId;
+				
+				var externWienVidEmbedDiv = "<iframe allowfullscreen style=\"overflow: auto; border:none;\" scrolling=\"auto\" frameborder=\"0\" src=\"" + externWienIframeUrl + "\" width=\"" + externWienIframeWidth + "\" height=\"" + externWienIframeHeight + "\" name=\"" + externWienIframeTitle + "\" title=\"" + externWienIframeTitle + "\"><a href=\"" + externWienIframeUrl + "\">" + externWienIframeTitle + "</a></iframe>";	
+				setExternWienVidEmbedCode(externWienVidEmbedDiv, 'iFrameTextArea' + settings.vId);
+			}
+			externWienVidEmbedIframe(rendMode);
+			
+			
+			function setExternWienVidEmbedCode(eWEC, iFrameTextAreaId) {
+				$('#' + iFrameTextAreaId).text(eWEC);
+			}
+			
+			function getExternWienVidEmbedCode (iFrameTextAreaId) {
+				return $('#' + iFrameTextAreaId).text();
+			}	
+			/*
+			$('input#vie_tv-embedCode-cb' + settings.vId).live( "change", function() {
+	
+				var externWienVidEmbedHttps = $('input#vie_tv-embedCode-cb' + settings.vId).is(':checked');
+				
+				if (externWienVidEmbedHttps == true) {
+					var extvidcode = getExternWienVidEmbedCode('iFrameTextArea' + settings.vId);
+					setExternWienVidEmbedCode(extvidcode.replace(/http:/g, "https:"), 'iFrameTextArea' + settings.vId);
+				}
+				else {
+					var extvidcode = getExternWienVidEmbedCode('iFrameTextArea' + settings.vId);
+					setExternWienVidEmbedCode(extvidcode.replace(/https:/g, "http:"), 'iFrameTextArea' + settings.vId);
+				}
+			});
+			*/
+			
+			//migrate fix
+			$('.vie_tv-embedCodeToggle').on('click', 'a#vie_tv-embedCodeToggle' + settings.vId, function(){
+				$(this).toggleClass('active');
+				$('#vie_tv-embedCode' + settings.vId).toggle();
+				if ($('#' + vContainer).parent().next().attr("class").indexOf("vAPOutTranscript") > -1) {
+					if ($('a#vie_tv-transcriptToggle' + settings.vId).attr('class').indexOf('active') > -1) {
+						$('#vAPOutTranscript' + settings.vId).toggle();
+						$('a#vie_tv-transcriptToggle' + settings.vId).toggleClass('active');
+					}
+				}
+				if (embCnt == 0) {
+					setupPiwikInteractions(1, 'Einbetten');
+				}
+				embCnt++;
+			});
+			
+			//migrate fix
+			$('.vie_tv-embedCodeToggle').on('click', 'a#vie_tv-transcriptToggle' + settings.vId, function(){	
+					//todo only one not all
+					$(this).toggleClass('active');
+					$('#vAPOutTranscript' + settings.vId).toggle();
+					
+					if ($('a#vie_tv-embedCodeToggle' + settings.vId).attr('class').indexOf('active') > -1) {
+					$('#vie_tv-embedCode' + settings.vId).toggle();
+						$('a#vie_tv-embedCodeToggle' + settings.vId).toggleClass('active');
+					}
+					
+					if (transCnt == 0) {
+						setupPiwikInteractions(1, 'Mitschrift');
+					}
+					transCnt++;
+			});
+			
+
+		}
+		/* / IFRAME u transcript*/
+
+		function setupDetailLink(vContainer, vMId, rendMode) {
+			$("#" + vContainer + " .vie_amb_det_link").remove();
+			
+			if (rendMode == "flash") {
+				var detLinkParent = $("#" + vContainer).parent().attr('id');
+					$("#" + detLinkParent).after('<div class="vie_amb_det_link"><p><a href="' + c_detLinkPath + vMId  + '" target="_parent">zur Video Detailseite</a></p></div>');
+		
+			}
+			else {
+				var detLinkParent = vContainer;
+					$("#" + detLinkParent).after('<div class="vie_amb_det_link htmlmode"><p><a href="' + c_detLinkPath + vMId  + '" target="_parent">zur Video Detailseite</a></p></div>');
+			}
+		}
+		
+		function setupDetailLinkAudio(vContainer, vMId, rendMode) {
+			$("#" + vContainer + " .vie_amb_det_audio").remove();
+			
+			if (rendMode == "flash") {
+				var detLinkParent = $("#" + vContainer).parent().attr('id');
+					$("#" + detLinkParent).after("<div class='vie_amb_det_audio emb_" + rendMode + "'><p><a href='" + settings.vFile + "' target='_parent'>MP3 Download</a></p></div>");
+			}
+			else {
+				var detLinkParent = vContainer;
+					$("#" + detLinkParent).after("<div class='vie_amb_det_audio emb_" + rendMode + "'><p><a href='" + settings.vFile + "' target='_parent'>MP3 Download</a></p></div>");
+			}
+		}	
+		
+		function setupPiwikInteractions(pType, vAction) {
+			
+			//console.log("setupPiwikInteractions: pType=" + pType + " vAction=" + vAction);
+			var piwikCusVar = "Video";
+			var vIndex = "1";
+			if (pType == 1) {
+				piwikCusVar = "Video";
+				vIndex = "1";
+			}
+			else if (pType == 2) {
+				piwikCusVar = "Player";
+				vIndex = "2";
+			}
+			else if (pType == 3) {
+				piwikCusVar = "Aufruf";
+				vIndex = "3";
+			}
+			
+			else if (pType == 4) {
+				piwikCusVar = "Aufrufe";
+				vIndex = "4";
+			}
+			
+			var vName = settings.vMId + "" + piwikCusVar;
+			var vValue = vAction;
+			var vScope = "page";
+			
+			if(typeof _paq != 'undefined') {
+				//console.log("PiwikInteractions:" + vAction);
+				//console.log("_paq:" + _paq);
+				_paq.push(['setCustomVariable', vIndex, vName, vValue, vScope]);
+				_paq.push(["trackPageView"]);
+				//_paq.push(['trackGoal', 1, vAction]);
+			}
+			
+			setupWhiInteractions(pType, vAction);
+
+		}
+		
+		function setupWhiInteractions(pType, vAction) {
+			
+			//console.log("setupWhiInteractions: pType=" + pType + " vAction=" + vAction);
+			var whiCusVar = "Video";
+			var vIndex = "1";
+			if (pType == 1) {
+				whiCusVar = "Video";
+				vIndex = "1";
+			}
+			else if (pType == 2) {
+				whiCusVar = "Player";
+				vIndex = "2";
+			}
+			else if (pType == 3) {
+				whiCusVar = "Aufruf";
+				vIndex = "3";
+			}
+			
+			else if (pType == 4) {
+				whiCusVar = "Aufrufe";
+				vIndex = "4";
+			}
+			
+			var vName = settings.vMId + "" + whiCusVar;
+			var vValue = vAction;
+			var vScope = "page";
+			
+		
+			if ( pType == 2 && vAction == 'play' ) {
+				$.post(
+					'/video/services/frontend',
+					{
+						method:'addPlay',
+						ID:settings.vMId
+					},
+					'json'
+				);
+			}
+			
+		}
+		
+		jwplayer(vContainer).onReady( function(){
+
+			//flash or html5
+			var rendMode = jwplayer(vContainer).getRenderingMode();
+			
+			if (rendMode == "flash") {
+				setExtControlbar(rendMode, vContainer);
+				flashPiwikSetup(vContainer, rendMode);
+			}
+			else if (rendMode == "html5") {
+				pimpControls(vContainer, rendMode);
+			}
+			else {
+				setExtControlbar(rendMode, vContainer);
+				pimpControls(vContainer, rendMode);
+			}
+			
+			if (settings.vCall == "default") {
+				setupIframeEmbeddding(rendMode);
+			}
+			
+			if (settings.vCall == "embed" && settings.vTyp == "video") {
+				setupDetailLink(vContainer, settings.vMId, rendMode);
+			}
+			if (settings.vCall == "embed" && settings.vTyp == "audio") {
+				setupDetailLinkAudio(vContainer, settings.vMId, rendMode);
+			}
+			
+			if (rendMode == "html5" && settings.vCall == "default") {
+				$("#" + vContainer + "_caption.jwcaptions").insertAfter("#" + vContainer);
+				$("#" + vContainer + "_caption.jwcaptions").wrap( "<div class='outercapswrapper'></div>" );
+			}
+			
+					
+			if (settings.vCall == "default") {
+				setupPiwikInteractions(3, "wienat");
+			}
+			else if (settings.vCall == "embed") {
+				setupPiwikInteractions(3, "embed");
+			}
+			else  {
+				setupPiwikInteractions(3, "undefined");
+			}
+			
+			setupPiwikInteractions(4, "gesamt");	
+		
+
+		});
+
+	};
+	
+}(jQuery));	
+							

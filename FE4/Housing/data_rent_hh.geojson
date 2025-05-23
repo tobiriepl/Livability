@@ -1,0 +1,29 @@
+{
+"type": "FeatureCollection",
+"name": "data_rent_hh",
+"features": [
+{ "type": "Feature", "properties": { "BEZ": "01", "housing_avg": 2409.1108909868858 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "02", "housing_avg": 1273.8147002789929 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "03", "housing_avg": 1345.6247381421349 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "04", "housing_avg": 1484.385169492002 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "05", "housing_avg": 1081.1627336926981 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "06", "housing_avg": 1463.5923734813248 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "07", "housing_avg": 1439.3048447785857 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "08", "housing_avg": 1432.506766399043 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "09", "housing_avg": 1406.8823638230144 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "10", "housing_avg": 1080.2365332861555 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "11", "housing_avg": 1192.4433173655814 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "12", "housing_avg": 1071.2476786928435 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "13", "housing_avg": 1511.8779764243848 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "14", "housing_avg": 1284.7094046918594 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "15", "housing_avg": 939.36271340727421 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "16", "housing_avg": 1005.8710634258507 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "17", "housing_avg": 1142.6281228221085 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "18", "housing_avg": 1411.6297489362487 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "19", "housing_avg": 1494.1217099257306 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "20", "housing_avg": 1178.4923793566104 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "21", "housing_avg": 1329.2500688576713 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "22", "housing_avg": 1454.0200917687357 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "23", "housing_avg": 1443.3435863385409 }, "geometry": null }
+]
+}

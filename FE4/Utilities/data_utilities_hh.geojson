@@ -1,0 +1,29 @@
+{
+"type": "FeatureCollection",
+"name": "data_utilities_hh",
+"features": [
+{ "type": "Feature", "properties": { "BEZ": "01", "utilities_cost": 472.14239895200706, "elec_cost": 80.712833333333336, "gas_cost": 361.42956561867373, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "02", "utilities_cost": 341.77493960832055, "elec_cost": 80.712833333333336, "gas_cost": 231.0621062749872, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "03", "utilities_cost": 362.09656811432433, "elec_cost": 80.712833333333336, "gas_cost": 251.38373478099098, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "04", "utilities_cost": 399.57908431467263, "elec_cost": 80.712833333333336, "gas_cost": 288.86625098133931, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "05", "utilities_cost": 331.06442609088543, "elec_cost": 80.712833333333336, "gas_cost": 220.35159275755211, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "06", "utilities_cost": 378.19155756818662, "elec_cost": 80.712833333333336, "gas_cost": 267.4787242348533, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "07", "utilities_cost": 380.66861599865791, "elec_cost": 80.712833333333336, "gas_cost": 269.95578266532459, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "08", "utilities_cost": 396.95484553847854, "elec_cost": 80.712833333333336, "gas_cost": 286.24201220514522, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "09", "utilities_cost": 378.87654356450764, "elec_cost": 80.712833333333336, "gas_cost": 268.16371023117432, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "10", "utilities_cost": 274.71586339993422, "elec_cost": 80.712833333333336, "gas_cost": 164.0030300666009, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "11", "utilities_cost": 280.48957883836835, "elec_cost": 80.712833333333336, "gas_cost": 169.77674550503502, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "12", "utilities_cost": 327.39630440107413, "elec_cost": 80.712833333333336, "gas_cost": 216.68347106774081, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "13", "utilities_cost": 406.20281132612047, "elec_cost": 80.712833333333336, "gas_cost": 295.48997799278715, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "14", "utilities_cost": 341.38015068747785, "elec_cost": 80.712833333333336, "gas_cost": 230.66731735414453, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "15", "utilities_cost": 321.29963888888904, "elec_cost": 80.712833333333336, "gas_cost": 210.58680555555569, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "16", "utilities_cost": 326.98715359734666, "elec_cost": 80.712833333333336, "gas_cost": 216.27432026401334, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "17", "utilities_cost": 348.30908889371102, "elec_cost": 80.712833333333336, "gas_cost": 237.59625556037767, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "18", "utilities_cost": 383.53466986730018, "elec_cost": 80.712833333333336, "gas_cost": 272.82183653396686, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "19", "utilities_cost": 356.15663552830586, "elec_cost": 80.712833333333336, "gas_cost": 245.44380219497251, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "20", "utilities_cost": 290.53116505254263, "elec_cost": 80.712833333333336, "gas_cost": 179.81833171920931, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "21", "utilities_cost": 272.66267781753226, "elec_cost": 80.712833333333336, "gas_cost": 161.94984448419891, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "22", "utilities_cost": 252.22134127699547, "elec_cost": 80.712833333333336, "gas_cost": 141.50850794366212, "int_cost": 30.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "BEZ": "23", "utilities_cost": 302.03824377655917, "elec_cost": 80.712833333333336, "gas_cost": 191.32541044322582, "int_cost": 30.0 }, "geometry": null }
+]
+}

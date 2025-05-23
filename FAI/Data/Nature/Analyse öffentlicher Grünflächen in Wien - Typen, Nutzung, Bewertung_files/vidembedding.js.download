@@ -1,0 +1,157 @@
+﻿/*
+
+ * Name: vidembedding.js
+ * Version: 3
+ * Date: 2014-03-01
+
+- config
+	todo rootPath und rootPathVidConfig eintragen
+
+*/
+
+$(document).ready(function(){  
+
+	var vieVideoEmbedding = function(){
+		
+		// config
+		
+		var rootPath = 'https://www.wien.gv.at/video/';
+		var rootPathVidConfig = rootPath +'vconfig/vconfig_';
+		
+		var aVieEmbed1 = $('p.vie-video');
+		var aVieEmbed2 = $('p.vie-video-50');
+		var aVieEmbed3 = $('p.vie-video-50l');
+		var vidContMinWidth = 270;
+		
+		playerProgressiveArray = [];
+		playerM3u8Array = [];
+		playerSmilArray = [];
+		captionFileArray = [];
+		playerFlvImgArray = [];
+
+		playerProgressive = [];
+		playerM3u8 = [];
+		playerSmil = [];
+		captionFile = [];
+		playerFlvImg = [];
+		
+		gle1 = aVieEmbed1.length;
+		gle2 = aVieEmbed2.length;
+		gle3 = aVieEmbed3.length;
+		gel1bis3 = parseInt(gle1) + parseInt(gle2) + parseInt(gle3);
+		//alert(gel1bis3);
+		//10 vids per page possible
+
+/*
+		function getParameterByName(urlparam) {
+			var mName = "mid";
+	    var match = RegExp('[?&]' + mName + '=([^&]*)').exec(urlparam);
+	    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+		}
+*/
+		function getParameterByName(urlparam) {
+			var mName = "mid";
+			var match = RegExp('[?&]' + mName + '=([^&]*)').exec(urlparam);
+			if(!match) {
+				match = RegExp('video\\/(\\d+)').exec(urlparam);
+			}
+			return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+		}
+
+		if (gel1bis3 > 0 && gel1bis3 < 10) {
+			
+			linkhrefArr = [];
+			splitPosition = [];
+			splitPosition2 = [];
+			configid = [];
+			videoArrayid = [];	
+			videoObjectsArr = [];	
+			videoObjectsArrPosition = [];
+			va_i = 0;
+			va_j = 0;
+			va_k = 0;	
+	
+			$('p.vie-video a').each(
+				function( intIndex ){
+					videoObjectsArr[va_i] = $(this);
+					videoObjectsArrPosition[va_i] = "vie-video";
+					va_i = va_i + 1;
+				}
+				
+			);
+			va_j = va_i;
+			
+			$('p.vie-video-50 a').each(
+				function( intIndex ){
+					videoObjectsArr[va_j] = $(this);
+					videoObjectsArrPosition[va_j] = "vie-video-50";
+					va_j = va_j + 1;
+				}
+			);
+			va_k = va_j;
+
+			$('p.vie-video-50l a').each(
+				function( intIndex ){
+					videoObjectsArr[va_k] = $(this);
+					videoObjectsArrPosition[va_k] = "vie-video-50l";
+					va_k = va_k + 1;
+				}
+			);
+			$.each(videoObjectsArr, function( intIndex ){
+
+				linkhrefArr[intIndex] = $(this).attr('href');
+				var newMid = "";
+				newMid = getParameterByName(linkhrefArr[intIndex]);
+				configid[intIndex] = newMid;
+		
+		
+				var vidBoxDiv = '<div class="vAPOutContainer ' + videoObjectsArrPosition[intIndex] + '"> ' +
+					'<div id="videoAreaPlayer' + intIndex + '" class="vAPClass"> ' +
+						'	Zur Betrachtung von Videos auf wien.at m&uuml;ssen Sie Javascript in Ihrem Browser aktivieren.<br /> ' +
+						' <a  href="' + linkhrefArr[intIndex] + '">zur Video Detailseite</a>' + 
+					'</div> ' +
+					'<div class="clearfix"></div> ' +
+				'</div> ' ;
+				
+				vidBoxConfigPath = rootPathVidConfig + configid[intIndex] + '.js';
+				
+				$(this).parent().replaceWith(vidBoxDiv);
+
+				$.getScript(vidBoxConfigPath, function() {
+
+					if ( playerProgressiveArray.length ) {
+					
+					tcntci = configid[intIndex];
+					//console.log("tcntci:" + tcntci + " playerSmil:" + playerProgressiveArray[tcntci]);
+					playerProgressive[intIndex] = playerProgressiveArray[tcntci];
+					playerM3u8[intIndex] = playerM3u8Array[tcntci];
+					playerSmil[intIndex] = playerSmilArray[tcntci];
+
+					captionFile[intIndex] = captionFileArray[tcntci];
+					playerFlvImg[intIndex] = playerFlvImgArray[tcntci];
+					
+					//playerInits(intIndex,playerFlv[intIndex],playerWidth,playerHeight,playerFlvImg[intIndex],playerFlvMobile[intIndex]);
+					
+					//$('input#vie_tv-embedCode-cb' + settings.vId).live( "change", function() {
+					//console.log("playerProgressive:" + playerProgressive[intIndex] + " playerSmil:" + playerSmil[intIndex] + " playerM3u8:" + playerM3u8[intIndex]);
+					$("#videoAreaPlayer" + intIndex).wienvideo({
+							vId: intIndex,
+							vMId: newMid,
+							vTyp: "video",
+							vCall: "embed",
+							vFile: playerProgressive[intIndex],
+							vSmilFile: playerSmil[intIndex],
+							vM3u8File: playerM3u8[intIndex],
+							vImage: playerFlvImg[intIndex],
+							vTitle: "wien.at Video",
+							vTrack: captionFile[intIndex]
+					});
+					
+					}
+
+				});
+			}); // / each
+
+		}
+	}(); 
+});

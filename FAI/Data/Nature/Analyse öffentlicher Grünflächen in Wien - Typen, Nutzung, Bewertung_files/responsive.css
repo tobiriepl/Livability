@@ -1,0 +1,3165 @@
+script{
+	font-family: 'desktop'; /* For JS detection */
+}
+#vie_channel .ui-selectmenu,#vie_lang .ui-selectmenu,#sidr{
+	display: none;
+}
+
+#toggle_mobile_menu{
+	display: none;
+}	
+#vie_lang .vie-subcl,
+#vie_channel ul{
+	display: block;
+}
+
+body > .ui-selectmenu-menu{
+	visibility: hidden;
+	display: none;
+}
+
+@media only screen and (max-width: 61.25em) { /* 980px */
+
+	#sidr{display: none;}
+	#accessibletabscontent0-1,#accessibletabscontent0-2, #vie_hinweise, #vie_fontsize{display: none !important;}
+	#vie_breadcrumbs {float: none; width: 100%}
+		
+	html {
+		-webkit-text-size-adjust: none; /* Prevent font scaling in landscape */
+		/* overflow-x: hidden; */
+	}
+	
+	script{
+		font-family: 'tablet'; /* For JS detection */
+	}
+
+	.vie-page-margins{
+		min-width: 320px;
+		margin-right: 0;
+	}
+
+    #vie_main-nav {
+        margin-top: 36px;
+    }
+	
+	#vie_kopfzeile{
+		height: 2.5em;
+	}
+
+	#vie_kopfzeile .vie-subcolumns{
+	/*
+		margin-left: -33em;
+		padding-left: 100%;*/
+		padding-top: 0.9em;
+	}
+			
+	.hidden-sm{
+		display: none;
+	}
+	
+	/* Searchbar */
+	
+	.vie-tabs{
+		background-color: transparent;
+	}
+	.vie-tabpanel{
+		min-width: 0;
+	}
+	#vie_suchwidget{
+		border: 0 none;
+		box-shadow: none;
+		width: 230px;
+	}
+	
+	#vie_suchwidget #suggestion_form_small fieldset{
+		padding: 0;
+		padding-top: 8px;
+		
+	}
+	.vie-tabs ul.vie-tabs-list,
+	.vie-tabs ul.vie-tabs-list li{
+		display: none !important;
+	}
+
+	#vie_suche-global-tabpanel #suchbegriff_small{
+		width: 75% !important;
+		height: 25px;
+		font-size: 1.600em;
+		padding: 3px 5px 0;
+		margin-left: 0;
+		min-height: 0;
+	}
+
+	#vie_button-schnellsuche{
+		width: 32px;
+		height: 30px;
+		background-color: #333333;
+		margin-left: 0;
+		position: absolute;
+		right: 13px;
+		bottom: 1px;
+	}
+	#vie_button-schnellsuche span{
+		left: 50%;
+		margin-left: -9px;
+		top: 5px;
+		position: absolute;
+	}
+	#vie_button-schnellsuche span img{
+		height: 20px;
+		width: 19px;
+	}
+	
+	/* JS Autocomplete style */
+	
+	#vie_suchwidget .ui-autocomplete{
+		left: -15.5px !important;
+		top: 37.8px !important;
+		width: 226px !important;
+		z-index: 1000 !important;
+	}	
+	
+	/* THEMEN */
+	
+	#vie_welten li a{
+		padding: 0.8em 6px 0.8em;
+		top: 0;
+	}
+	
+	/* Sprachauswahl */
+	
+	#vie_lang,#sidr-id-vie_lang {
+		max-width: 200px;
+		width: auto;
+		min-width: 175px;
+		padding: 0;
+		min-height: 25px;
+		/*
+		border: 1px solid #efefef;
+		border-left: 2px solid #efefef;*/
+		position: absolute;
+		z-index: 100;
+	}
+	#vie_lang{
+		margin-right: 15em;
+		right: 40%;
+	}
+	#sidr-id-vie_lang{
+		margin: 23px 15px;
+		position: relative;
+	}
+	#sidr-id-vie_lang #sidr-id-vie_lang-5 {display: none !important} 
+	.ui-selectmenu-menu .vie_lang-5 a{
+		background: url(/layout-a/wien.at/img/icons-head.png) no-repeat scroll 0 -311px rgba(0, 0, 0, 0);
+		padding-left: 33px;
+		background-position: 12px -306px;
+	}
+
+	#vie_lang .vie-subcl,#sidr-id-vie_lang .vie-subcl {
+		padding-left: 0;
+	}
+	#vie_lang li,
+	#vie_lang ul,
+	#sidr-id-vie_lang ul,
+	#sidr-id-vie_lang li{
+		float: none !important;
+		display: block;
+		background-color: #ffffff;
+	}
+	#vie_lang ul,
+	#sidr-id-vie_lang ul{
+		display: none;
+		margin: 0 !important;
+		padding-top: 5px;
+		border-top: 1px solid #000000;
+	}
+	#vie_lang:hover ul{
+		display: block;	
+	}
+	#vie_lang ul.vie-lang,
+	#sidr-id-vie_lang ul.sidr-class-vie-lang{
+		border-top: 1px solid #EFEFEF;
+		padding-top: 0;
+	}
+	#vie_lang li,
+	#sidr-id-vie_lang li{
+		display: block !important;
+		border-bottom: 1px solid #efefef;
+		padding-left: 5px !important;
+		border-left: 0 none !important;
+		border-right: 0 none !important;
+	}
+	#vie_lang li a,
+	#sidr-id-vie_lang li a{
+		display: block;
+		width: 100%;
+		height: 100%;
+		font-family: arial,sans-serif;
+		font-size: 12px;
+		font-weight: bold;
+		line-height: 23px;
+		padding: 0;
+	}
+	/*
+	#vie_lang .ui-selectmenu{
+		width: auto !important;
+	}*/
+	#vie_lang #vie_lang-4 a,
+	#sidr-id-vie_lang #sidr-id-vie_lang-4 a,
+	.ui-selectmenu-menu .vie_lang-4 a{
+		background: url(/layout-a/wien.at/img/icons-head.png) no-repeat scroll 0 -207px rgba(0, 0, 0, 0);
+		padding-left: 18px;
+	}
+	.ui-selectmenu-menu .vie_lang-4 a{
+		background-position: 12px -202px;
+		padding-left: 33px;
+	}
+	#vie_lang h5,
+	#sidr-id-vie_lang h5{
+		position: static;
+		width: auto;
+		height: auto;
+		font-family: arial,sans-serif;
+		margin: 5px;
+		margin-right: 2.5em;
+		font-size: 12px;
+		cursor: pointer;
+	}
+	#sidr-id-vie_lang h5{
+		background: #ffffff !important;
+		margin: 0;
+		padding: 5px;
+		border: 0 none !important;
+	}
+	#vie_lang h5:before,
+	#sidr-id-vie_lang h5:before{
+		width: 30px;
+		height: 25px;
+		background-color: #ffffff;
+		content: "";
+		display: inline-block;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 10;
+	}
+	#sidr-id-vie_lang h5:before{
+		height: 26px;
+	}
+	#vie_lang h5:after,
+	#sidr-id-vie_lang h5:after{
+		border-left: 6px solid rgba(0, 0, 0, 0);
+		border-right: 6px solid rgba(0, 0, 0, 0);
+		border-top: 6px solid #333333;
+		content: "";
+		display: inline-block;
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		z-index: 20;
+	}
+	
+	#vie_lang .ui-selectmenu{
+		background: #ffffff;
+	}
+	
+	
+	
+	/* NOTRUF / KONTAKT BOX */
+	
+	#vie_notrufe{
+		position: absolute;
+		right: 0;
+		margin-right: 235px;
+		top: 9px;
+		width: auto;
+		min-width: 260px;
+	}
+	
+	
+	/* MENU */
+	.ui-selectmenu { display: block; position:relative; height:2em; text-decoration: none; overflow:hidden;}
+	.ui-selectmenu-icon { position:absolute; right:6px; margin-top:-8px; top: 50%; }
+	.ui-selectmenu-menu { padding:0; margin:0; list-style:none; position:absolute; top: 0; visibility: hidden; overflow: auto; z-index: 1000 !important; }
+	.ui-selectmenu-open { visibility: visible !important; display: block !important; }
+	.ui-selectmenu-menu-popup { margin-top: -1px; }
+	.ui-selectmenu-menu-dropdown { }
+	.ui-selectmenu-menu li {background-image: none !important; padding:0; margin:0; display: block; border-top: 1px dotted transparent; border-bottom: 1px dotted transparent; border-right-width: 0 !important; border-left-width: 0 !important; font-weight: normal !important; }
+	.ui-selectmenu-menu li a,.ui-selectmenu-status {line-height: 1.4em; display:block; padding:.3em 1em; outline:none; text-decoration:none; }
+	.ui-selectmenu-menu li.ui-selectmenu-hasIcon a,
+	.ui-selectmenu-hasIcon .ui-selectmenu-status { padding-left: 20px; position: relative; margin-left: 5px; }
+	.ui-selectmenu-menu li .ui-icon, .ui-selectmenu-status .ui-icon { position: absolute; top: 1em; margin-top: -8px; left: 0; }
+	.ui-selectmenu-status { line-height: 1.4em; }
+	.ui-selectmenu-open li.ui-selectmenu-item-focus a {  }
+	.ui-selectmenu-open li.ui-selectmenu-item-selected { }
+	.ui-selectmenu-menu li span,.ui-selectmenu-status span { display:block; margin-bottom: .2em; }
+	.ui-selectmenu-menu li .ui-selectmenu-item-header { font-weight: bold; }
+	.ui-selectmenu-menu li .ui-selectmenu-item-content {  }
+	.ui-selectmenu-menu li .ui-selectmenu-item-footer { opacity: .8; }
+
+	.ui-selectmenu-menu .ui-selectmenu-group { font-size: 1em; }
+	.ui-selectmenu-menu .ui-selectmenu-group .ui-selectmenu-group-label { line-height: 1.4em; display:block; padding:.6em .5em 0; font-weight: bold; }
+	.ui-selectmenu-menu .ui-selectmenu-group ul { margin: 0; padding: 0; }
+	
+	.ui-selectmenu-menu li:first-child{
+		display: none;
+	}
+	#ui-id-2-menu .ui-selectmenu-menu li{
+		background-color: #c8c8c8;
+	}
+	
+	.ui-selectmenu-menu  li.vie-channel-01.ui-selectmenu-item-focus,
+	.ui-selectmenu-menu  li.vie-channel-01.ui-state-hover{background: #e0e0e0;}
+	
+	.ui-selectmenu-menu  li.vie-channel-02.ui-selectmenu-item-focus,
+	.ui-selectmenu-menu  li.vie-channel-02.ui-state-hover{background: #cbebfd;}
+	
+	.ui-selectmenu-menu  li.vie-channel-03.ui-selectmenu-item-focus,
+	.ui-selectmenu-menu  li.vie-channel-03.ui-state-hover{background: #e3e752;}
+	
+	.ui-selectmenu-menu  li.vie-channel-04.ui-selectmenu-item-focus,
+	.ui-selectmenu-menu  li.vie-channel-04.ui-state-hover{background: #fecf3b;}
+	
+	.ui-selectmenu-menu  li.vie-channel-05.ui-selectmenu-item-focus,
+	.ui-selectmenu-menu  li.vie-channel-06.ui-state-hover{background: #e1bdd7;}
+	
+	/*	Wird mittels JS auf display none gesetzt
+	#vie_channel > ul{
+		display: none;
+	}*/
+	
+	#vie_channel .ui-selectmenu,
+	#vie_lang .ui-selectmenu{
+		display: block;
+	}
+	
+	#vie_channel a.ui-selectmenu{
+		background-image: none;
+		background-color: #ffffff;
+		margin: 8px;
+	}
+
+	.ui-selectmenu-menu-dropdown{
+		height: auto !important;
+	}
+	.ui-selectmenu-menu li a{
+		padding: 0.7em 1em;
+	}
+	
+	
+	/* Design Ã„nderungen der verschiedenen Welten */
+
+  .vie-welten-05 {
+    min-width: 190px;
+  }
+
+	/* Themen */
+	#vie_channel.vie-channel-01{background-color: #ececec;border-top: 4px solid #c8c8c8;}
+	#vie_channel.vie-channel-01:before {border-top: 4px solid #d2d2d2;}
+	#vie_channel.vie-channel-01 ul li.active a,
+	#vie_channel.vie-channel-01 ul li a:hover,
+	#vie_channel.vie-channel-01 ul li a:focus{	background: #d2d2d2;}
+	
+	/* Virtuelles Amt */
+	#vie_channel.vie-channel-02{background-color: #c9e5f5;border-top: 4px solid #aad6ef;}
+	#vie_channel.vie-channel-02:before {border-top: 4px solid #bde0f3;}
+	#vie_channel.vie-channel-02 ul li.active a,
+	#vie_channel.vie-channel-02 ul li a:hover,
+	#vie_channel.vie-channel-02 ul li a:focus{	background: #bde0f3;}
+	
+	/* Stadtplan */
+	#vie_channel.vie-channel-03{background-color: #f7d66d;border-top: 4px solid #f2ba09;}
+	#vie_channel.vie-channel-03:before {border-top: 4px solid #f0c43b;}
+	#vie_channel.vie-channel-03 ul li.active a,
+	#vie_channel.vie-channel-03 ul li a:hover,
+	#vie_channel.vie-channel-03 ul li a:focus{	background: #f0c43b;}
+	
+	/* wien.at TV */
+	#vie_channel.vie-channel-04{background-color: #e2e57d;border-top: 4px solid #d2d733;}
+	#vie_channel.vie-channel-04:before {border-top: 4px solid #d4d850;}
+	#vie_channel.vie-channel-04 ul li.active a,
+	#vie_channel.vie-channel-04 ul li a:hover,
+	#vie_channel.vie-channel-04 ul li a:focus{	background: #d4d850;}
+	
+	/* mein bezirk */
+	#vie_channel.vie-channel-05{background-color: #dcc8d7;border-top: 4px solid #c9a9c0;}
+	#vie_channel.vie-channel-05:before {border-top: 4px solid #cdb2c5;}
+	#vie_channel.vie-channel-05 ul li.active a,
+	#vie_channel.vie-channel-05 ul li a:hover,
+	#vie_channel.vie-channel-05 ul li a:focus{	background: #cdb2c5;}
+    
+    #vie_col1_content > .vie-sidebar-suche #vie_button-sidebar-suche {
+        right: 10px;
+        top: 10px;
+        height: 29px;
+        width: 29px;
+    }
+}
+
+@media (max-width: 45em) { /* 720px */
+
+	script{
+		font-family: 'mobile'; /* For JS detection */
+	}
+	#vie_karussell{
+		display: none;
+	}
+	
+	#vie_skiplinks{
+		z-index: 10000;
+	}
+	
+	.affix {
+		position: fixed !important;
+		width: 99.9%;
+		z-index: 1000;
+	}
+
+	/* Display none (header) */
+	#vie_header #vie_main-nav .vie-c74l,#vie_header #vie_channel,#vie_kopfzeile{
+		display: none;
+	}
+	
+	/* Header */
+	
+	#vie_header{
+		background: #E0E0E0;
+		border-bottom: 1px solid #8e8e8e;
+		width: 100%;
+		min-width: 320px;
+		min-height: 60px;
+		margin-top: -1px;
+		position: fixed;
+		z-index: 1000;
+	}
+	#vie_main-nav{
+		margin-top: 0;
+	}
+
+	
+	#vie_main{
+		padding-top: 7em;
+	}/*
+	body.androidv2 #vie_main{
+		padding-top: 0;
+	}*/
+	
+	
+	/* wien.at LOGO  */
+	#vie_logo{
+				display: flex;
+				align-items: center;
+				padding-left: 0;
+				width: auto;
+        height: 46px;
+        left: 6em;
+        padding: 8px 10px;
+	}
+
+    #vie_logo img {
+			height: 46px;
+			width: 80px;
+		}
+    
+	/* html[lang="en"] #vie_logo{
+        height: 45px;
+        left: 6em;
+        padding: 8px 5px;
+        width: 45px;        
+	}
+    
+    html[lang="en"] #vie_logo img {
+        height: 45px;
+        width: 45px;
+    } */
+    
+	#vie_notrufe{
+		margin-right: 0;
+		height: 100%;
+		top: 0;
+		
+	}
+	
+	#vie_notrufe .vie-subcr{
+		height: 100%;
+		padding: 0 !important;
+	}
+	#vie_notrufe .vie-subcr > h6{
+		position: absolute;
+		width: 22%;
+		height: 100%;
+		left: auto;
+		top: 0;
+	}
+	#vie_notrufe .vie-subcr > h6 > a,
+	.vie-tabs-content h5#accessibletabscontent0-0{
+		left: 0;
+		background-image: none;
+		display: inline-block;
+		height: 100%;
+		width: 100%;
+		padding: 0;
+		color: #000000;
+		text-align: center;
+		text-decoration: none !important;
+		line-height: 1.1em;
+	}
+	#vie_notrufe .vie-subcr > h6 > a:hover,.vie-tabs-content h5#accessibletabscontent0-0:hover,
+	#vie_notrufe .vie-subcr > h6 > a:focus,.vie-tabs-content h5#accessibletabscontent0-0:focus,
+	#vie_notrufe .vie-subcr > h6 > a.active,.vie-tabs-content h5#accessibletabscontent0-0.active{
+		background-color: #C8C8C8;
+	}
+	#vie_notrufe .vie-subcr > h6 > a:before,
+	.vie-tabs-content h5#accessibletabscontent0-0:before{
+		display: block;		
+		position: relative;
+		top: 13px;
+		margin-bottom: 17px;
+		color: #000000;
+		font-size: 20px;
+		vertical-align: sub;
+		background-image: url(/layout-a/wien.at/img/hotline.svg);
+		background-repeat: no-repeat; 
+		background-position: top center;
+		content: '';
+		height: 37%;
+	}
+	
+	#vie_notrufe .vie-subcr > .vie-kontakt > a:before{background-image: url(/layout-a/wien.at/img/kontakt.svg);}
+	.vie-tabs-content h5#accessibletabscontent0-0:before{background-image: url(/layout-a/wien.at/img/suche.svg);}
+
+	/* Android v2.x .svg Bug-fix */
+	body.androidv2 .vie-tabs-content h5#accessibletabscontent0-0:before,body.androidv2 #vie_notrufe .vie-subcr > h6 > a:before{background-size: 37% auto;}
+	body.androidv2 #vie_notrufe .vie-subcr > h6 > a:before{background-image: url(/layout-a/wien.at/img/hotline.png);}
+	body.androidv2 #vie_notrufe .vie-subcr > .vie-kontakt > a:before{background-image: url(/layout-a/wien.at/img/kontakt.png);}
+	body.androidv2 .vie-tabs-content h5#accessibletabscontent0-0:before{background-image: url(/layout-a/wien.at/img/suche.png);}
+	
+	#vie_notrufe .vie-subcr > .vie-kontakt{
+		right: 0;
+	}
+	#vie_notrufe .vie-subcr > .vie-notruf{
+		right: 54%;
+	}
+	#vie_notrufe .vie-subcr > .vie-notruf *{
+	}
+	
+	/* Suche */
+	
+	#vie_button-schnellsuche{
+		right: 0;
+		bottom: 8px;
+	}
+	body.androidv2 #vie_button-schnellsuche{
+		right: 20px;
+	}
+	body.androidv2 #vie_suche-global-tabpanel #suchbegriff_small{
+		width: 89% !important;
+	}
+	
+	#vie_suchwidget{
+		width: 28em;
+		height: 100%;
+		position: static;
+	}
+	
+	#vie_suche-global-tabpanel{
+		display: none;
+		background: #C8C8C8;
+		border-bottom: 1px solid #8E8E8E;
+		position: absolute;
+		padding-left: 1em;
+		padding-right: 1em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+		box-sizing:border-box;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 47px;
+		z-index: -300;
+		opacity: 0;
+		transition: none;
+	}
+	#vie_suche-global-tabpanel form{
+		
+		position: relative;
+	}
+	#vie_suche-global-tabpanel.active{
+		display: block;
+		top: 100%;
+		opacity: 1;
+		z-index: 100;
+	}
+	
+	/* JS Autocomplete Style */
+	
+	#vie_suchwidget .ui-autocomplete{
+		box-sizing:border-box;
+		-moz-box-sizing:border-box; 
+		width: 107% !important;
+		left: -1em !important;
+	}	
+
+	#vie_suchwidget #suggestion_form_small fieldset{
+		padding: 8px 0;
+	}
+	#vie_suche-global-tabpanel #suchbegriff_small{
+		width: 96% !important;
+	}
+	.vie-tabs-content h5#accessibletabscontent0-0{
+		display: block !important;
+		position: absolute;
+		width: 79px;
+		right: 0;
+		margin-right: 87px;
+		line-height: 1.1em;
+		left: auto;
+		font-weight: normal;
+		font-size: 1.1em;
+		cursor: pointer;
+		z-index: 100;
+	}
+
+	
+	/* Slide in MenÃ¼ Button */
+  
+  #vie_welten {
+    padding-top:0
+  }
+	
+	#toggle_mobile_menu{
+		background-image: none;
+		color: #000000;
+		display: inline-block;
+		height: 5.459em;
+		line-height: 8.3em;
+		padding: 0;
+		text-align: center;
+		text-decoration: none !important;
+		width: 5.5em;
+		text-align: center;
+		position: relative;
+		text-indent: 0;
+		font-size: 11px;
+	}
+	#toggle_mobile_menu:before{
+		border-bottom: 0.23em solid #000000;
+		border-top: 0.6em double #000000;
+		content: "";
+		font-size: 24px;
+		height: 0.18em;
+		margin-right: -0.4em;
+		position: absolute;
+		right: 45%;
+		top: 11px;
+		width: 1.1em;
+		background-color: transparent;
+	}
+	
+	#vie_main-nav h5{	
+		display: none;
+		position: relative;
+		z-index: 500;
+		left: 0 !important;
+		top: 0;
+		width: 4.5em;
+		
+		font-weight: normal;
+		margin: 0;
+		font-size: 1.1em;
+		cursor: pointer;
+		text-align: center;
+		/*
+		padding: 3.7em 0.7em 0em 0.7em;
+		line-height: 1.2em;
+		height: 1.7em;*/
+		padding: 0 0.7em 0em 0.7em;
+		line-height: 7.9em;
+		height: 4.7em;
+		text-indent: -5px;
+	}
+	#toggle_mobile_menu:hover,
+	#toggle_mobile_menu:focus,
+	#vie_main-nav h5:hover,
+	#vie_main-nav h5:focus,
+	body.sidr-open #toggle_mobile_menu,
+	body.sidr-open #vie_main-nav h5{	
+		background-color: #C8C8C8;
+	}
+	#vie_main-nav h5:before{
+		border-bottom: 0.23em solid #000000;
+		border-top: 0.6em double #000000;
+		content: "";
+		font-size: 24px;
+		height: 0.18em;
+		margin-right: -0.4em;
+		position: absolute;
+		right: 50%;
+		top: 13px;
+		width: 1.1em;
+		background-color: transparent;
+	}
+	#vie_footer .vie-subcolumns{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+		box-sizing:border-box;
+		width: auto;
+	}
+		
+	/* Sidr Style */
+
+	body.sidr-open{
+		left: 0 !important;
+		position: static !important;
+		width: inherit !important;
+	}
+	body.sidr-open .vie-page-margins{
+		left: 260px;
+		position: absolute;
+		width: 456px;
+	}
+	
+
+	.sidr {
+		display: none;
+		position: fixed;
+		top: 0;
+		height: 100%;
+		z-index: 1000;
+		width: 260px;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		font-size: 15px;
+		background: #FFF;
+		color: #000;
+	}
+	.sidr{
+		position: absolute; 
+		height: auto;
+		overflow: hidden;
+	}/*
+	body.androidv2.sidr-open{
+		left: 0 !important;
+		position: static !important;
+		width: inherit !important;
+	}
+	body.androidv2.sidr-open .vie-page-margins{
+		left: 260px;
+		position: absolute;
+		width: 456px;
+	}
+	body.androidv2.sidr-open{
+		left: 0 !important;
+		position: static !important;
+		width: inherit !important;
+	}
+	body.androidv2.sidr-open .vie-page-margins{
+		left: 260px;
+		position: absolute;
+		width: 456px;
+	}
+
+	body.androidv2 .sidr{
+		position: absolute !important;
+		height: 912px;
+	}*/
+	/*
+	body.androidv2.sidr-open{
+		overflow: visible;
+		left: 260px !important;
+		position: absolute !important;
+	}*/
+	#sidr #sidr-id-vie_form-bezirke{
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	#sidr #sidr-id-vie_form-bezirke li{
+		border: 0;		
+	}
+	.sidr-inner{
+		display: none;
+	}
+
+	body.sidr-open .sidr-inner{
+		display: block;
+	}
+	/*
+	body.sidr-open #vie_notrufe .vie-kontakt a{
+		display: none;
+	}*/
+	
+	#sidr-id-vie_bezirke-button{
+		width: 95%;
+		padding: 2px;
+	}
+	#sidr-id-vie_bezirke-menu{
+		width: 90%;
+	}
+	#sidr-id-vie_bezirke-menu li:nth-child(2),
+	#sidr-id-vie_logoff{
+		display: none;
+	}
+	#sidr-id-vie_bezirke-menu li a{
+		padding: 0.2em 1em;
+	}
+
+
+	.sidr .sidr-inner {
+		padding: 0
+	}
+	.sidr .sidr-inner>p {
+		margin-left: 15px;
+		margin-right: 15px
+	}
+	.sidr.right {
+		left: auto;
+		right: -260px
+	}
+	.sidr.left {
+		left: -260px;
+		right: auto
+	}
+	.sidr h1,.sidr h2,.sidr h3,.sidr h4,.sidr h5,.sidr h6,
+	p.sidr-class-vie-subcl a,
+	.sidr-inner > a{
+		display: block;
+		font-weight: normal;
+		font-size: 0.9em;
+		margin: 0;
+		padding: 15px 15px;
+		color: #000;
+		background: #FFF; 
+		border-bottom: 1px solid #D2D2D2;
+	}
+  
+  .sidr-inner > .sidr-class-vie-subcl ul li  a {
+    border-bottom: 1px solid #D2D2D2;
+  }
+  
+	.sidr p {
+		font-size: 13px;
+		margin: 0 0 12px
+	}
+	/*
+	.sidr p a {
+		color: rgba(255,255,255,0.9)
+	}*/
+	.sidr>p {
+		margin-left: 15px;
+		margin-right: 15px
+	}
+	.sidr ul {
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+	.sidr ul li {
+		display: block;
+		margin: 0;
+	}
+	.sidr ul li:hover,.sidr ul li.active,.sidr ul li.sidr-class-active {
+		border-top: none;
+		line-height: 49px
+	}
+	.sidr-class-vie-c74l .sidr-class-active,
+	.sidr-class-vie-channel-04 .sidr-class-active,
+	.sidr-class-active em{
+		display: none !important;
+	}
+	.sidr-class-active a{
+		font-weight: bold;
+	}
+	/*
+  .sidr ul li:hover>a,.sidr ul li:hover>span,.sidr ul li.active>a,.sidr ul li.active>span,.sidr ul li.sidr-class-active>a,.sidr ul li.sidr-class-active>span {
+		-webkit-box-shadow: inset 0 0 15px 3px #222;
+		-moz-box-shadow: inset 0 0 15px 3px #222;
+		box-shadow: inset 0 0 15px 3px #222
+	}
+  */
+	.sidr ul li a{
+		padding: 10px 15px;
+		display: block;
+		text-decoration: none;
+		color: #000;
+		font-size: 0.9em;
+		line-height: 1.2em;
+	}
+	.sidr ul li ul {
+		border-bottom: none;
+		margin: 0
+	}
+	.sidr ul li ul li {
+		line-height: 40px;
+		font-size: 13px
+	}
+	.sidr ul li ul li:last-child {
+		border-bottom: none
+	}
+	.sidr ul li ul li:hover,.sidr ul li ul li.active,.sidr ul li ul li.sidr-class-active {
+		border-top: none;
+		line-height: 41px
+	}
+	/*
+  .sidr ul li ul li:hover>a,.sidr ul li ul li:hover>span,.sidr ul li ul li.active>a,.sidr ul li ul li.active>span,.sidr ul li ul li.sidr-class-active>a,.sidr ul li ul li.sidr-class-active>span {
+		-webkit-box-shadow: inset 0 0 15px 3px #222;
+		-moz-box-shadow: inset 0 0 15px 3px #222;
+		box-shadow: inset 0 0 15px 3px #222 
+	} 
+  */
+	
+  .sidr ul li ul li a,.sidr ul li ul li span {
+		color: #000;
+		padding-left: 30px
+	}
+	.sidr form {
+		margin: 0 15px
+	}
+	.sidr label {
+		font-size: 13px
+	}
+	.sidr input[type="text"],.sidr input[type="password"],.sidr input[type="date"],.sidr input[type="datetime"],.sidr input[type="email"],.sidr input[type="number"],.sidr input[type="search"],.sidr input[type="tel"],.sidr input[type="time"],.sidr input[type="url"],.sidr textarea,.sidr select {
+		width: 100%;
+		font-size: 1em;
+		padding: 5px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin: 0 0 10px;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		-ms-border-radius: 2px;
+		-o-border-radius: 2px;
+		border-radius: 2px;
+		border: none;
+		background: rgba(0,0,0,0.1);
+		color: rgba(0,0,0,0.6);
+		display: block;
+		clear: both;
+		
+	}
+	.sidr input[type=checkbox] {
+		width: auto;
+		display: inline;
+		clear: none
+	}
+	.sidr input[type=button],.sidr input[type=submit] {
+		color: #333;
+		background: #fff
+	}
+	.sidr input[type=button]:hover,.sidr input[type=submit]:hover {
+		background: rgba(0,0,0,0.9)
+	}
+
+	#sidr-id-vie_welten,
+	.sidr .sidr-inner > h5,
+	#sidr-id-toggle_mobile_menu{
+		display: none;
+	}
+	.sidr-class-vie-c74l a{
+		padding: 13px 15px !important;
+	}
+	#sidr-id-vie_notrufe h6{
+		padding: 0;
+	}
+	#sidr-id-vie_notrufe h6 a{
+		display: block;
+		padding: 13px 15px !important;
+	}
+	p.sidr-class-vie-subcl {
+		margin: 0 !important;
+	}
+	p.sidr-class-vie-subcl *,
+	p.sidr-class-vie-subcl {
+		font-size: 0;
+		line-height: 0;
+		text-indent: -1000px;
+	}
+	p.sidr-class-vie-subcl a{
+		display: block;
+		font-size: 13.5px;
+		text-indent: 0;
+		line-height: 0.8em;
+		color: #000000;
+	}
+
+	/* Design Ã„nderungen der verschiedenen Welten */
+
+	/* Themen */
+	.sidr-class-vie-channel-01 h6,
+	.sidr-class-vie-welten-01{
+		font-weight: normal;
+		background: #C8C8C8;
+    border-bottom: 1px solid #D2D2D2;
+	}
+
+  .sidr-class-vie-channel-01 ul li > a {
+    background: #E0E0E0;
+    border-bottom: 1px solid #D2D2D2;
+  }
+    
+
+	/* Virtuelles Amt */
+
+	.sidr-class-vie-channel-02 h6,
+	.sidr-class-vie-welten-02{
+		font-weight: normal;
+		background: #AAD7EF;
+    border-bottom: 1px solid #BDE0F3;
+	}
+
+  .sidr-class-vie-channel-02 ul li > a {
+    background: #C9E5F5;
+    border-bottom: 1px solid #BDE0F3;
+  }
+  
+	/* Stadtplan */
+
+	.sidr-class-vie-channel-03 h6,
+	.sidr-class-vie-welten-03{
+		background: #F2BA09; 
+	}
+
+
+	/* wien.at TV */
+
+	.sidr-class-vie-channel-04 h6,
+	.sidr-class-vie-welten-04{
+		background: #D2D733;
+    border-bottom: 1px solid #D4D850;
+	}
+
+  .sidr-class-vie-channel-04 ul li > a {
+    background: #E2E57D;
+    border-bottom: 1px solid #D4D850;
+   }
+	/* mein bezirk */
+
+	.sidr-class-vie-channel-05 h6,
+	.sidr-class-vie-welten-05{
+		background: #C9A9C0;
+    border-bottom: 1px solid #CDB2C5;
+	}
+	 
+   #sidr .sidr-class-vie-channel-05  #sidr-id-vie_form-bezirke {
+    margin: 0;
+    padding:10px 15px;
+    background: #DCC8D7;
+    border-bottom: 1px solid #CDB2C5;
+  }
+  
+  .sidr-class-vie-channel-05 #sidr-id-vie_form-bezirke select {
+    background: #DCC8D7;
+    border: 1px solid #CDB2C5;
+  }
+  
+  #vie_col1_content > .vie-sidebar-suche input#Suchbegriff {
+    border: 1px solid #C8C8C8!important;
+  }
+    
+  #vie_col1_content > .vie-sidebar-suche #vie_button-sidebar-suche{
+    height: 37px;
+    width: 37px;
+  }
+   
+  .vie-sidebar-suche > p{
+    margin-bottom: 0;
+    padding: 3px 13px;
+  }
+  
+  .vie-sidebar-suche a.vie-tooltip img{
+     margin: 10px;
+   }
+}  
+
+@media only screen and (max-width: 37.5em) { /* 600px 37.5em*/
+	/* FOOTER */
+	#vie_footer .vie-subcolumns{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+		box-sizing:border-box;
+		width: auto;
+	}
+	#vie_footer .vie-subcolumns h5{
+		padding: 8px 0;
+		font-size: 1.4em;
+	}
+	#vie_footer .vie-c20r{
+		clear: both;
+		float: none;
+		width: 46%;
+	}
+	#vie_footer .vie-subcolumns .vie-footer-links > div{
+		float: none;
+		width: 100%;
+		margin: 0;
+	}
+	#vie_footer .vie-subcolumns  > div li{
+		margin-top: 0 !important;
+		font-size: 1.3em;
+	}
+	#vie_footer #vie_copyright{
+		text-align: center;
+		width: 100%;
+	}
+	#vie_footer .vie-c20r{
+		width: 100%;
+	}
+	#vie_logo-stadt-wien{
+		text-align: center;
+	}
+	#vie_footer #vie_logo-stadt-wien img{
+		float: none;
+		display: inline;
+	}
+}
+@media only screen and (max-width: 23.75em) { /* 380px 23.75em*/
+	/* #vie_notrufe .vie-subcr > .vie-notruf{
+		right: 56%;
+	} */
+	/* #vie_notrufe .vie-subcr > h6{
+		width: 22%;
+	} */
+	.vie-tabs-content h5#accessibletabscontent0-0{
+		width: 79px;
+		right: 0;
+	}
+	#vie_notrufe .vie-subcr > .vie-kontakt{
+		width: 30%;
+	}
+}
+
+@media (min-width: 22.8125em) and (max-width: 45em) { /* 720px */
+	#vie_logo{
+		padding: 8px 10px 8px 5px;
+	}
+
+	#vie_logo img {
+		height: auto;
+		width: 102px;
+	}
+}
+
+@media (max-width: 22.8125em) {
+	#vie_logo {
+    padding-left: 0;
+	}
+}
+
+@media (max-width: 21.25em) {
+	#vie_logo img {
+        width: 60px;
+	}
+}
+
+@media print, embossed { 
+	#sidr,.ui-selectmenu-menu{
+		display: none !important;        
+	}
+    #vie_header {
+        position:absolute;
+    }
+}
+
+/* 2. Teil */
+@media only screen{
+	#vie_main-nav .ui-selectmenu-menu,
+	#vie_kopfzeile .ui-selectmenu-menu,
+	#vie_lang > select,
+	#vie_col1_content > .vie-sidebar-suche,
+	#vie_col1_content.vie-start #vie_col2,
+	#vie_col1 > #vie_col1_content > .submenu_header{
+		display: none;
+	}
+
+	#vie_fontsize{
+		display: block !important;
+	}
+
+	.vie-img-flexible {
+		-moz-box-sizing: border-box !important;
+		-webkit-box-sizing: border-box !important; 
+		box-sizing: border-box !important;
+	}
+
+	.vie-page{
+		padding: 0;
+	}
+
+
+	/* Mein Bezirk Style Fix */
+
+	/* Submit Button */
+	/*
+	#vie_main-nav > .vie-channel-05 li > button{ 
+		display: none;
+	}*/
+	#vie_channel{
+		min-height: 50px;
+	}
+	#vie_channel.vie-channel-05{
+		border-top: 0 none;
+	}
+	#vie_channel.vie-channel-05 select{
+		border: 1px solid #d3d3d3;
+	}
+	#vie_channel.vie-channel-05 form fieldset ul{
+		min-height: 41px;
+		border-bottom: 0 none;
+	}
+	.vie-channel-05 select{
+		height: 2.5em;
+	}
+	.vie-channel-05 button{
+		margin-top: 3px;
+		height: 2.1em;
+		width: 2.5em;
+	}
+	#vie_channel.vie-channel-05 ul li:first-child{
+		overflow: visible;
+	}
+
+
+	/* Scrollbare Tabelle */
+
+
+	.mobile_scrollable {
+	    overflow-x:auto;
+	}
+
+	.mobile_scrollable.has-scroll {
+		position:relative;
+		overflow:hidden; 
+		clear: both;
+	}
+	.mobile_scrollable.has-scroll::after {
+	    position:absolute;
+	    top:0;
+	    left:100%;
+	    width:50px;
+	    height:100%;
+	    border-radius:5px 0 0 5px / 30% 0 0 30%;
+	    box-shadow:-5px 0 15px rgba(0, 0, 0, 0.2);
+	    content:'';
+	}
+
+	.mobile_scrollable.has-scroll > div {
+	    overflow:auto;
+	    -ms-overflow-x: scroll !important;
+	   	-ms-overflow-style: scrollbar !important; /* Win Phone 8 Horizontal Bugfix */
+	}
+	.mobile_scrollable > div::-webkit-scrollbar {
+	    height:12px;
+	}
+	.mobile_scrollable > div::-webkit-scrollbar-track {
+	    box-shadow:0 0 2px rgba(0,0,0,0.15) inset;
+	    background:#f0f0f0;
+	}
+	.mobile_scrollable > div::-webkit-scrollbar-thumb {
+	    border-radius:6px;
+	    background:#ccc;
+	}
+
+	/* image copyright / Desktop Version */
+	#vie_mobilevers,
+	#vie_desktopvers{
+		/*display: none; */
+		float: right;
+	}
+	#vie_mobilevers a,
+	#vie_desktopvers a{
+		text-decoration: underline;
+		font-size: 10px;
+	}
+	#vie_mobilevers p,
+	#vie_desktopvers p{
+		padding-top: 1em;
+	}
+	#vie_imagecopyright{
+		background: #e6e6e6;
+    	border-top: 1px #ccc solid;
+    	padding: 10px;
+    	height: auto;
+    	overflow: hidden;
+	}
+	#vie_imagecopyright > span:last-child {
+		display: none;
+	}
+	
+
+	/* Abbr Container */
+
+	#vie_abbrContainer{
+		position: fixed;
+		z-index: 1000; 
+		bottom: -20px;
+		left: 0;
+		width: 100%;
+		height: auto;
+		background-color: black;
+		transition: bottom 0.3s;
+	}
+	#vie_abbrContainer.open{
+		bottom: 0;
+	}
+	#vie_abbrContainer p{ 		
+		color: #ffffff;
+		margin: 18px 10px 18px 10px;
+		margin-bottom: -15%;
+		font-size: 17px;
+		line-height: 23px;
+		transition: margin 0.3s;
+	}  
+	#vie_abbrContainer.open p{
+		margin-bottom: 18px;
+		
+	} 
+	#vie_abbrContainer .close_abbr{
+	    position: absolute;
+	    right: -80px;
+	    top: -50px;
+	    margin-top: 0px;
+	    margin-right: 0;
+	    cursor: pointer;
+	    color: #fff;
+	    font-size: 30px;
+	    font-weight: bold;
+	    display: inline-block;
+	    line-height: 0px;
+	    height: 50px;
+	    width: 71px;
+	    background-color: black;
+	    vertical-align: sub;
+	    text-indent: 18px;
+	    text-align: left;
+	    border-radius: 0;
+	    border: 0 none;
+	    transition: right 0.2s;
+	}
+	#vie_abbrContainer.open .close_abbr{
+		right: -20px; 
+	}
+	/* Gilt fÃ¼r alle Sprachen ausser Deutsch */
+	body > #vie_footer{
+		margin-top: 0;
+	}
+	    
+}
+/* 980px */
+@media only screen and (min-width: 61.25em){
+	body > #vie_imagecopyright{
+		margin-right: 20px !important;
+    	border-right: 1px solid #ccc;
+    	max-width: 122em;
+    }
+}
+
+/* 980px */
+@media only screen and (max-width: 61.25em){
+
+	#vie_suche-adresse-tabpanel,
+	#vie_suche-fahrplan-tabpanel,
+	.vie-artikel-drucken,
+	#vie_fontsize{
+		display: none !important;
+	}
+
+	#vie_suche-global-tabpanel{
+		display: block !important;
+	}
+
+	#vie_imagecopyright{
+		display: block;
+	}
+
+	.vie-beachten.vie-hinweis-gefahr{
+		margin-top: 1em;
+	}
+
+	/* Submit Button */
+	.vie-channel-05 button{
+		height: 2.1em;
+	    margin-left: 10px;
+	    margin-top: 14px;
+	    width: 3.5em;
+	}
+
+	body.empty_col1 #vie_col1,
+	#vie_channel > ul,
+	#vie_lang .vie-subcl{
+		display: none;
+	}
+
+	#vie_main{
+		position: relative;
+	}
+	.vie-folgeseite #vie_col1[role=navigation]{
+		width: 248px;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.vie-folgeseite #vie_col1[role=main]{
+		width: 100%;
+	}
+	.vie-folgeseite #vie_col2{
+		width: auto;
+		padding-left: 248px;
+		float: none;
+	}	
+
+	.vie-folgeseite #vie_col2_content{
+		overflow: auto;
+	}
+	body.empty_col1 .vie-folgeseite #vie_col2{
+		padding-left: 0;
+	}
+
+	.div.vieinfo{
+		width: 100%;
+	}
+	#vie_fontsize{
+		position: absolute;
+		right: 1.2em;
+		top: -4.5em;
+		width: auto;
+		z-index: 100;
+	}
+
+	#vie_fontsize ul li{
+		float: left;
+		width: 3em;
+		background-color: #f8f8f8; 
+		margin-left: -1px;
+	}
+	#vie_fontsize ul li:first-child{
+		margin-left: 0;
+	}
+	#vie_fontsize ul li a{
+		display: block;
+		line-height: 25px;
+		letter-spacing: 0.6em;
+  		text-align: center !important;
+  		text-decoration: none !important;
+  		border: 1px #ccc solid;
+  		padding: 4px 0 !important;
+  		text-indent: 0.5em;
+	}
+	#vie_fontsize ul li a:hover,
+	#vie_fontsize ul li a:focus{
+		background-color: #CACACA;
+	}
+	
+	
+	#vie_fontsize .dfactive,
+	#vie_fontsize .ic1active,
+	#vie_fontsize .ic2active{
+		background-color: #CACACA;
+	}
+
+	body.no_col1_menu #vie_col1 .vie-start,
+	body.no_col1_menu #vie_col2 .vie-start{
+		margin-top: 1em !important;
+	}
+
+	/* Suche innerhalb des der col1 */
+
+	#vie_col1_content > .vie-sidebar-suche{
+		display: block;
+	}
+	#vie_col1_content.vie-artikel > .vie-sidebar-suche{
+		font-size: 0.8em;
+	}
+
+	#vie_col1_content > .vie-sidebar-suche h2{
+		display: none;
+	}
+	#vie_col1_content > .vie-sidebar-suche form{
+		overflow: visible;
+	}
+	#vie_col1_content > .vie-sidebar-suche fieldset{
+		padding: 1.0em 0 1.0em 0;
+	}
+	
+	#vie_col1_content > .vie-sidebar-suche input#Suchbegriff,
+	#vie_col1_content > .vie-sidebar-suche input#vie_suche-sidebar-text-1{
+		background-color: #ffffff;
+		min-height: 1.5em;
+		padding: 0.1em 0.1em 0.1em 0.4em;
+		font-size: 1.600em;
+		margin-left: 0;
+		width: 80%;
+	}
+	#vie_col1_content > .vie-sidebar-suche input[type=image]{
+		height: 2.7em;
+		width: 2.7em;
+	}
+	
+
+	.vie-startseite #vie_col1_content > .vie-sidebar-suche{
+		display: none;
+	}
+
+
+	/* Suche: Veranstaltungsseite */
+
+
+	#vie_col1_content > .vie-sidebar-suche button{
+		height: 3em;
+		width: 3em;
+		background-color: #333333;
+		border: 0 none;
+		position: absolute;
+		top: 11px;
+		right: 10px;
+		cursor: pointer;
+	}
+	#vie_col1_content > .vie-sidebar-suche button img:hover{
+		border: 0 none !important;
+	}
+	#vie_col1_content > .vie-sidebar-suche .vie-tooltip{
+		position: absolute;
+		left: 0;
+		top: 47px;
+		width: 22px;
+		height: 11px;
+	}
+	#vie_col1_content > .vie-sidebar-suche > p{
+		margin-left: 2em;
+	}
+
+
+
+
+	#vie_hilfsnav{
+		min-height: 1.1em;
+	}
+
+	/* col3 2 Spalten */
+	.vie-folgeseite #vie_col3{
+		clear: both;
+		float: none;
+		/*width: 100%;*/
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.vie-folgeseite #vie_col3 #vie_col3_content > div{
+		clear: none;
+		float: left;
+		box-sizing: border-box;
+	}
+
+	.vie-folgeseite #vie_col3 #vie_col3_content{
+		padding-left: 0.8em;
+	}
+
+	.vie-folgeseite #vie_col3 #vie_col3_content > div{
+		width: 49.5%;
+	}
+	
+	.vie-folgeseite #vie_col3 #vie_col3_content > div:nth-of-type(2n + 1){
+		clear: both;
+		margin-right: 1%;
+	}
+
+	.vie-folgeseite #vie_col3 #vie_col3_content.col_res_fix > div:nth-of-type(2n + 1){
+		clear: none;
+		margin-left: 1%;
+	}
+
+	.vie-folgeseite #vie_col3 #vie_col3_content.col_res_fix > div{
+		margin-right: 0;
+		clear: both;
+	}
+
+	/* Mein Bezirk */
+
+	#vie_channel.vie-channel-05 form fieldset ul{
+		padding: 0;
+	}
+
+	#vie_channel.vie-channel-05 .ui-selectmenu{
+		min-height: 0;
+	}
+
+	#vie_main-nav > .vie-channel-05 select{
+		margin: 12px 8px;
+	}
+
+	/* Autocomplete Menu */
+
+	ul.ui-autocomplete{
+		padding-left: 0;
+		padding-right: 0;
+	} 
+
+	.ui-autocomplete .ui-menu-item a{
+		font-size: 115%;
+		padding: 0.4em 0.5em !important;
+		line-height: 1.8em;
+		margin-left: 0 !important;
+		
+	}
+	.ui-autocomplete .ui-menu-item a:hover,
+	.ui-autocomplete .ui-menu-item a:focus{
+		background: #ececec !important;
+	}
+
+}
+
+/* 900px */
+@media only screen and  (max-width: 56.25em){
+	/*#vie_col3 .vie-sidebar-suche,*/
+	#vie_loggedin,
+	.vie-flashmap{
+		display: none !important;
+	}
+	.vie-startseite #vie_col1_content > .vie-sidebar-suche,
+	#vie_col1_content .vie-channelnav{
+		display: block;
+	}
+
+	.vie-startseite #vie_col1{
+		width: 59.4%;
+	}
+	.vie-startseite #vie_col2{
+		width: 40.4%;
+	}
+
+	/* col3 2 Spalten */
+	.vie-startseite #vie_col3{
+		clear: both;
+		float: none;
+		/*width: 100%;*/
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.vie-startseite #vie_col3 #vie_col3_content > div{
+		clear: none;
+		float: left;
+		box-sizing: border-box;
+	}
+
+	.vie-startseite #vie_col3 #vie_col3_content{
+		padding-left: 0.8em;
+	}
+
+	.vie-startseite #vie_col3 #vie_col3_content > div{
+		width: 49.5%;
+	}
+	
+	.vie-startseite #vie_col3 #vie_col3_content > div:nth-of-type(2n + 1){
+		clear: both;
+		margin-right: 1%;
+	}
+
+	.vie-startseite #vie_col3 #vie_col3_content.col_res_fix > div:nth-of-type(2n + 1){
+		clear: none;
+		margin-left: 1%;
+	}
+
+	.vie-startseite #vie_col3 #vie_col3_content.col_res_fix > div{
+		margin-right: 0;
+		clear: both;
+	}
+
+	
+}
+
+/* 720-980px */
+@media only screen and (min-width: 45em) and (max-width: 61.25em){
+
+
+	/* col3 2 Spaltig */
+	.vie-folgeseite #vie_col3{
+		width: auto;
+		margin-left: 248px !important;
+	}
+
+	#vie_col1_content.vie-artikel > .vie-sidebar-suche input#vie_suche-sidebar-text-1{
+		width: 87% !important;
+	}
+
+	#vie_col1_content > .vie-sidebar-suche{
+		background-color: transparent;
+	}
+	#vie_col1_content > .vie-sidebar-suche fieldset{
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+}
+
+/* 720-900px */
+@media only screen and (min-width: 45em) and (max-width: 56.25em){
+
+	script{
+		font-family: 'tablet_small';
+	}
+
+	/* col3 3 Spaltig (falls kein Submenue in der col1 vorhanden ist*/
+
+	body.no_col1_menu #vie_col3 #vie_col3_content{
+		padding-left: 0;
+	}
+
+	body.no_col1_menu #vie_col3 #vie_col3_content > div:nth-of-type(2n + 1){
+		clear: none;
+		margin-right: 0;
+	}
+
+	body.no_col1_menu #vie_col3 #vie_col3_content > div{
+		width: 32.3333333%;
+	}
+	body.no_col1_menu #vie_col3 #vie_col3_content > div:nth-of-type(3n + 1){
+		clear: both;
+		margin-right: 1%;
+		margin-left: 1%;
+	}
+	body.no_col1_menu #vie_col3 #vie_col3_content > div:nth-of-type(3n + 3){
+		margin-left: 1%;
+	}
+	
+	body.no_col1_menu #vie_col3 #vie_col3_content.col_res_fix > div:nth-of-type(3n + 1){
+		clear: none;
+		margin-right: 0;
+		margin-left: 1%;
+	}
+	body.no_col1_menu #vie_col3 #vie_col3_content.col_res_fix > div:nth-of-type(3n + 2){
+		clear: both;
+		margin-left: 1%;
+		margin-right: 1%;
+	}
+	body.no_col1_menu #vie_col3 #vie_col3_content.col_res_fix > div:nth-of-type(3n + 3){
+		margin-left: 0;
+		margin-right: 0;
+		clear: none;
+	}
+	
+	body.no_col1_menu #vie_verantwortlich, #verantwortlich{
+		margin-top: 0;
+	}
+	body.no_col1_menu #vie_col2_content #vie_artikelfunktionen-unten{
+		border-top: 1px solid #999;
+		margin-bottom: 0;
+		padding-top: 0.5em;
+	}
+}
+/* 720px */
+@media only screen and  (max-width: 45em){
+
+	html{
+		height: auto !important;
+	}
+	#vie_main{
+		padding-top: 6em;
+	}
+	body.no_col1_menu .vie-startseite #vie_main{
+		padding-top: 7em;
+	}
+
+	.vie-c50r{
+		margin-left: 0;
+	}
+	#vie_footer{
+		margin-top: 0;
+	}
+
+
+	#vie_col1 > #vie_col1_content ul.vie-vlist li.active > strong,
+	#vie_welten > .vie-c40l,
+	a.vie-printall,
+	#vie_col1_content .vie-navmap,
+	#vie_col1_content.menu_fallback > a,
+	#vie_col1_content.nosub.activeSub .submenu_header,
+	#vie_karussell{
+		display: none !important;
+	}
+
+	#sidr_focusOnMenu{
+		font-size:15px;
+		position: absolute;
+		left:-1000em;
+		top:-1000em;
+	}
+
+	/* Skiplinks */
+
+	#vie_skiplinks{
+		width: 100%;
+	}
+	#vie_skiplinks a{
+		display: block;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		top: -4.3em;
+		opacity: 1; 
+		font-size: 14px;
+		padding: 1.5em 0;
+		transition: 0.3s;
+		background-color: rgba(51,51,51,0.7);
+	}
+	#vie_skiplinks a.vie-skip:focus,
+	#vie_skiplinks a.vie-skip:active{		
+		top: 0;
+		left: 0;
+	}
+
+	/* Menu Button */
+
+	#toggle_mobile_menu:before{
+		border: 0 none;
+		height: 37%;
+		font-size: 29px;
+		top: 13px;
+		right: 50%;
+		margin-right: -26%;
+		margin-left: 0;
+		background-image: url(/layout-a/wien.at/img/sandwich.svg);
+		background-position: top center;
+		background-repeat: no-repeat;
+	}
+	body.androidv2 #toggle_mobile_menu:before{
+		background-image: url(/layout-a/wien.at/img/sandwich.png);
+		background-size: 95%;
+	}
+
+	#vie_main.search_on_top{
+		padding-top: 6em;
+	}
+
+	h1.vie-main-heading{
+		margin-top: 1em;
+	}
+	#vie_col1{
+		display: inline-block;
+	}
+
+	#vie_col2 .vie-artikel h1,#vie_col2 .vie-video h1,#vie_col2 .vie-suche h1{
+		margin-top: 10px;
+	}
+
+	.mobile_scrollable {
+	    clear: both;
+	}
+
+	.vie-folgeseite #vie_col2_content{
+		overflow: visible;
+	}
+
+	.editableDocument{
+		overflow: visible;
+	}
+	.vie-nachrichten1{
+		margin-left: -10px;
+		margin-right: -14px;
+	}
+	.carousel-navbar-wrapper{
+		margin-right: 14px;
+	}
+
+	.sidr{
+		overflow-y: hidden;
+	}
+
+	body.sidr-open,
+	body.sidr-open #vie_main,
+	body.sidr-open .vie-page-margins{
+		overflow: hidden;
+		min-width: auto;
+	}
+
+	body.sidr-open #vie_header{
+		left: 260px;
+	}
+
+	.vie-startseite #vie_fontsize{
+		top: 6.4em;
+	}
+
+	.sidr-inner > a:focus,
+	.sidr-inner > a:hover,
+	#sidr-id-vie_notrufe h6 a:focus,
+	#sidr-id-vie_notrufe h6 a:hover,
+	.sidr .sidr-inner div > a:focus,
+	.sidr .sidr-inner div > a:hover{
+		text-decoration: underline;
+	}
+	.sidr .sidr-inner div.sidr-class-vie-channel-01 > ul li a:focus,
+	.sidr .sidr-inner div.sidr-class-vie-channel-01 > ul li a:hover{
+		background-color: #C8C8C8;
+	}
+	.sidr .sidr-inner div.sidr-class-vie-channel-02 > ul li a:focus,
+	.sidr .sidr-inner div.sidr-class-vie-channel-02 > ul li a:hover{
+		background-color: #AAD7EF;
+	}
+	.sidr .sidr-inner div.sidr-class-vie-channel-03 > ul li a:focus,
+	.sidr .sidr-inner div.sidr-class-vie-channel-03 > ul li a:hover{
+		background-color: #F3BF1B;
+	}
+	.sidr .sidr-inner div.sidr-class-vie-channel-04 > ul li a:focus,
+	.sidr .sidr-inner div.sidr-class-vie-channel-04 > ul li a:hover{
+		background-color: #D2D734;
+	}
+	.sidr .sidr-inner div.sidr-class-vie-channel-05 > ul li a:focus,
+	.sidr .sidr-inner div.sidr-class-vie-channel-05 > ul li a:hover{
+		background-color: #C9A9C0;
+	}
+
+	/* Wetter Zeile auf der Startseite */
+	#vie_breadcrumbs > span,
+	#vie_breadcrumbs > span > span{
+		margin-left: 10px;
+	}
+	.vie-startseite #vie_breadcrumbs{
+		height: 34px;
+		margin-bottom: 0;
+	}
+	#vie_breadcrumbs ol{
+		padding-right: 0;
+	}
+	body.no_col1_menu .vie-startseite #vie_breadcrumbs{
+		height: auto;
+	}
+	.vie-startseite #vie_breadcrumbs .vie-subcl > span{
+		display: block;
+	}
+	.vie-startseite #vie_breadcrumbs .vie-subcl > span > img{
+		padding-left: 0;
+	}
+	
+	
+	.vie-folgeseite #vie_col1,
+	.vie-folgeseite #vie_col2,
+	.vie-folgeseite #vie_col3{
+		clear: both;
+		float: none;
+		width: 100% !important;
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+	}
+	#vie_hilfsnav{
+		min-height: 0;
+	}
+	.vie-startseite .search_on_top #vie_hilfsnav,
+	.vie-folgeseite #vie_hilfsnav,
+	.vie-startseite #vie_hilfsnav{
+		background-color: #f2f2f2;
+		border-bottom: 1px solid #ffffff;
+		overflow: hidden;
+	}
+	body.no_col1_menu .vie-startseite #vie_hilfsnav{
+		background-color: transparent;
+		border-bottom: 0 none;
+		overflow: hidden;
+		width: 100%;
+	}
+	body.no_col1_menu .vie-startseite #vie_breadcrumbs .vie-subcl > span{
+		display: inline;
+	}
+	body.no_col1_menu .vie-startseite #vie_breadcrumbs{
+		width: 100%;
+	}	
+
+	.vie-mobile{
+		display: block;
+	}
+	.vie-suchseite #vie_col1{
+		float: none;
+		width: 100%;
+	}
+	.vie-suchseite #vie_col3{
+		margin: 0;
+	}
+
+	/* New Header */
+
+	.vie-tabs-content h5#accessibletabscontent0-0{ /* suche */
+		margin-right: 0;
+	}
+
+	#vie_notrufe .vie-subcr > .vie-kontakt{
+        width: 55px;
+		right: 70px;
+	}
+	.vie-tabs-content h5#accessibletabscontent0-0,
+	#vie_notrufe .vie-subcr > .vie-kontakt > a,
+	#vie_notrufe .vie-subcr > h6 > a{
+		white-space: nowrap;
+	}
+
+	/* NEW ICONS 
+	.vie-tabs-content h5#accessibletabscontent0-0:before,
+	#vie_notrufe .vie-subcr > .vie-kontakt > a:before,
+	#vie_notrufe .vie-subcr > h6 > a:before{
+		width: 100%;
+		left: auto;
+		overflow: visible;
+	}*/
+
+	.vie-tabs-content h5#accessibletabscontent0-0:before{
+		background-image: url(/layout-a/wien.at/img/lupe.svg);
+	}	
+	#vie_notrufe .vie-subcr > .vie-kontakt > a:before{
+		background-image: url(/layout-a/wien.at/img/avatar.svg);
+	}
+	#vie_notrufe .vie-subcr > h6 > a:before{
+		background-image: url(/layout-a/wien.at/img/hoerer.svg);
+	}
+
+	/* NEW ICONS PNG Fallback fÃ¼r android 2.x */
+	body.androidv2 .vie-tabs-content h5#accessibletabscontent0-0:before{
+		background-image: url(/layout-a/wien.at/img/lupe.png);
+	}
+	body.androidv2 #vie_notrufe .vie-subcr > .vie-kontakt > a:before{
+		background-image: url(/layout-a/wien.at/img/avatar.png);
+	}
+	body.androidv2 #vie_notrufe .vie-subcr > h6 > a:before{
+		background-image: url(/layout-a/wien.at/img/hoerer.png);
+		background-size: 20% auto;
+	}
+
+	body.androidv2 #vie_notrufe .vie-subcr > .vie-kontakt > a:before,
+	body.androidv2 .vie-tabs-content h5#accessibletabscontent0-0:before{
+		background-size: 28% auto;
+	}
+
+
+
+	/* Suche */
+
+	#vie_col1_content > .vie-sidebar-suche input[type=image]{
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		width: 34px;
+		height: 35px;
+		border-radius: 0;
+	}
+
+	#vie_suche-global-tabpanel{
+		border-bottom: 0 none;
+		/*
+		-webkit-box-shadow: 2px 8px 12px -3px rgba(0,0,0,0.35);
+		-moz-box-shadow: 2px 8px 12px -3px rgba(0,0,0,0.35);
+		box-shadow: 2px 8px 12px -3px rgba(0,0,0,0.35);
+		
+		-webkit-box-shadow: 0px 12px 28px -8px rgba(0,0,0,0.35);
+		-moz-box-shadow: 0px 12px 28px -8px rgba(0,0,0,0.35);
+		box-shadow: 0px 12px 28px -8px rgba(0,0,0,0.35);
+		*/
+		-webkit-box-shadow: 3px 6px 10px -3px rgba(0,0,0,0.35);
+		-moz-box-shadow: 3px 6px 10px -3px rgba(0,0,0,0.35);
+		box-shadow: 3px 6px 10px -3px rgba(0,0,0,0.35);
+		
+
+		height: 51px;
+	}
+	#vie_suche-global-tabpanel form{
+		position: static;
+	}
+	.vie-sidebar-suche{
+		background-color: #C8C8C8;
+		margin: 0 ;
+		position: relative;
+	}
+	#vie_col1_content > .vie-sidebar-suche{
+		background-color: #ffffff;
+	}
+	#vie_col1_content > .vie-sidebar-suche input#vie_suche-sidebar-text-1{
+		border: 1px solid #C8C8C8 !important;
+	}
+	.vie-startseite #vie_main.search_on_top .vie-sidebar-suche{
+		margin-left: -13px;
+		margin-right: -1.6em;
+		margin-bottom: 15px;
+	}
+	.vie-sidebar-suche > form  > fieldset{
+		margin: 0 ;
+		padding: 1em 45px 1em 10px !important;
+	}
+	
+	#vie_col1_content > .vie-sidebar-suche input#Suchbegriff,
+	#vie_col1_content > .vie-sidebar-suche input#vie_suche-sidebar-text-1,
+	#vie_suche-global-tabpanel #suchbegriff_small{
+		border: 1px solid #ffffff;
+		-webkit-appearance: normal;
+	    -moz-appearance: normal;
+	    appearance: normal;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		border-radius: 0;
+		background-color: #ffffff;
+		padding: 5px 0 5px 10px;
+		transition: border 0.8s;
+		min-height: 0;
+		height: 25px;
+	}
+	#vie_col1_content > .vie-sidebar-suche input#Suchbegriff,
+	#vie_col1_content > .vie-sidebar-suche input#vie_suche-sidebar-text-1{
+		display: block !important;
+		max-width: 100%;
+		width: 100% !important;
+		margin: 0 ;
+	}
+	#vie_button-schnellsuche{
+		width: 37px;
+   		height: 37px;
+   		right: 10px;
+   		bottom: 6px;
+	}
+	#vie_button-schnellsuche::after{
+		position: relative;
+	    top: 0;
+	    left: 50%;
+	    content: "";
+	    display: inline-block;
+	    /* By using an em scale, the arrows will size with the font */
+	    width: 0.8em;
+	    height: 0.8em;
+	    border-right: 0.4em solid #ffffff;
+	    border-top: 0.4em solid #ffffff;
+	    transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	    -webkit-transform: rotate(45deg);
+	    margin-left: -0.8em;
+	}
+	#vie_button-schnellsuche img{
+		display: none;
+	}
+
+	.vie-sidebar-suche .ui-autocomplete,
+	#vie_suchwidget .ui-autocomplete{	
+		border: 0 none;
+		border-radius: 0;
+		background-color: #C8C8C8;
+		padding-bottom: 10px;		
+		background-image: none !important;		
+		-webkit-box-shadow: 3px 5px 10px -1px rgba(0,0,0,0.35);
+		-moz-box-shadow: 3px 5px 10px -1px rgba(0,0,0,0.35);
+		box-shadow: 3px 5px 10px -1px rgba(0,0,0,0.35);
+		left: 0 !important;
+		width: 100% !important;
+		z-index: 1000 !important;
+	}
+
+	#vie_suchwidget .ui-autocomplete{		
+		top: inherit !important;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-top: 1px solid #C8C8C8;
+	}
+	.vie-sidebar-suche .ui-autocomplete{
+		margin-top: -3px;
+		background-color: #ffffff;
+	}
+	.vie-sidebar-suche .ui-autocomplete li,
+	#vie_suchwidget .ui-autocomplete li{		
+		background-color: #ffffff;		
+		border-bottom: 1px solid #C8C8C8;
+	}
+	.vie-sidebar-suche .ui-autocomplete li{
+		margin: 0 10px;
+		width: auto !important;
+		border-left: 1px solid #C8C8C8;
+		border-right: 1px solid #C8C8C8;
+	}
+	.vie-sidebar-suche .ui-autocomplete li a,
+	#vie_suchwidget .ui-autocomplete li a{
+		padding: 10px !important;
+		font-size: 14px;		
+		background-image: none !important;
+		border-radius: 0;
+		margin: 0 !important;
+	}	
+	.vie-sidebar-suche .ui-autocomplete li a.ui-state-focus,
+	#vie_suchwidget .ui-autocomplete li a.ui-state-focus{
+		border: 0 none !important;
+		margin: 0 !important;
+		background-color: #E0E0E0;
+	}
+
+	/* Subnavi */
+
+	.vie-folgeseite #vie_col1[role=navigation] #vie_col1_content{
+		margin: 0;
+		padding: 0;
+	}
+
+	body.no_col1_menu #vie_col1 > #vie_col1_content{
+		position: static !important;
+		margin: 0 1.3em 0.4em 0;
+		padding: 0 0 0 1em;
+	}
+	#vie_main.search_on_top #vie_col1 > #vie_col1_content.noactive{
+		margin-top: 0;
+	}
+	#vie_col1 ul.vie-vlist{
+		margin-bottom: 0;
+		/*
+		padding-left: 2px;
+		padding-right: 3px;*/
+	}
+
+	#vie_col1 > #vie_col1_content ul.vie-vlist li a,
+	#vie_col1 > #vie_col1_content ul.vie-vlist li strong {
+		margin-bottom: 0;
+		display: none;
+	}
+	#vie_col1 > #vie_col1_content.nosub.noactive ul.vie-vlist li a{
+		display: block;
+	}
+
+
+	#vie_col1 .vie-clearfix::after,	
+	#vie_col1 > #vie_col1_content.noactive ul.vie-vlist,
+	#vie_col1 ul.vie-vlist li.active > ul,
+	#vie_col1 .noactive ul.vie-channelnav{
+		display: none;
+	}
+
+	/*
+	#vie_col1 .noactive.open li,
+	#vie_col1 .noactive.open ul.vie-vlist{
+		display: block;
+	}*/
+	
+	.noactive .submenu_header .vie-hideme{
+		position: static;
+		width: auto;
+		height: auto;
+	}
+
+	.noactive .submenu_header .vie-hideme,
+	#vie_col1 > #vie_col1_content.open_sub.menu_fallback ul.vie-vlist li a,
+	/*#vie_col1 > #vie_col1_content.noactive ul.vie-vlist li a ,*/
+	/*#vie_col1 > #vie_col1_content.noactive ul.vie-vlist li strong,*/
+	#vie_col1 > #vie_col1_content ul.vie-vlist li.active a{
+		display: block;
+	}
+
+	#vie_col1 > #vie_col1_content ul.vie-vlist ul {
+		list-style-type: none;
+		list-style-image: none;
+	}
+	#vie_col1 > #vie_col1_content .vie-vlist{
+		border-bottom: 0;
+	}
+	#vie_col1 > #vie_col1_content.open_sub li.active ul,
+	#vie_col1 > #vie_col1_content.noactive.open_sub ul.vie-vlist,
+	#vie_col1 > #vie_col1_content.menu_fallback.open_sub ul.vie-vlist{
+		overflow: hidden;
+		margin-bottom: 0;
+		border: 0;
+		box-sizing: border-box;
+		background-color: #f2f2f2;
+	}
+	#vie_col1 > #vie_col1_content li.active{
+		list-style-type: none;
+		display: block;
+	}
+	#vie_col1 > #vie_col1_content > ul.submenu_header{
+		display: block;
+		margin-bottom: 0;
+		width: 100%;
+		overflow: hidden;
+	}
+	#vie_col1 > #vie_col1_content.vie-start > .vie-vlist,
+	#vie_col1 > #vie_col1_content.vie-start > ul.submenu_header {
+		margin-left: -10px;
+		margin-right: -0.8em;
+		width: auto;
+	}
+	#vie_col1 > #vie_col1_content li.active + .vie-vlist,
+	#vie_col1 > #vie_col1_content > ul.submenu_header > li.active > em{
+		display: none;
+	}
+	#vie_col1 > #vie_col1_content > ul.submenu_header > li.active .vie-blk{
+		display: inline;
+	}
+	#vie_col1 > #vie_col1_content.noactive > ul.submenu_header > li.active a strong,
+	#vie_col1 > #vie_col1_content + div{
+		display: none !important;
+	}
+	#vie_col1 > #vie_col1_content > ul > li > strong{
+		 border-top: 0 none;
+		 /*padding: 0;*/ 
+		 width: auto;
+	}
+
+	/* Subnav Dropdown header */
+
+	#vie_col1_content.menu_fallback .submenu_header h5,
+	#vie_col1 > #vie_col1_content > ul.vie-vlist li.active > strong,
+	#vie_col1 > #vie_col1_content > ul.submenu_header > li.active a{
+		display: block;
+		padding: 13px 13px 13px 39px !important; 
+		width: 100%;
+		box-sizing: border-box;
+		font-size: 14px;
+		position: relative;
+		font-weight: bold;
+		background-color: #f2f2f2 !important;
+		color: #3379A9;
+		text-decoration: none;
+		border: 0 none;
+		/*border: 1px solid #d7d7d7;*/
+	}
+	#vie_col1 > #vie_col1_content > ul.vie-vlist li.active > strong a{
+		background-color: #f2f2f2 !important;
+	}
+
+	/* Plus Icon */
+	#vie_col1_content.menu_fallback .submenu_header h5::before,
+	#vie_col1 > #vie_col1_content > ul.vie-vlist li.active > strong::before,
+	#vie_col1 > #vie_col1_content > ul.submenu_header > li.active a::before,
+	#sidr .sidr-inner > .sidr-class-vie-subcl > h5::before{
+		content: '';
+		background-image: url('data:image/gif;base64,R0lGODlhMgAyAIABAP///////yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEMyMDUwOTRDMDQ4MTFFNUE3QkRFNzdFRkI3MTgwRDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEMyMDUwOTVDMDQ4MTFFNUE3QkRFNzdFRkI3MTgwRDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0QzIwNTA5MkMwNDgxMUU1QTdCREU3N0VGQjcxODBEMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0QzIwNTA5M0MwNDgxMUU1QTdCREU3N0VGQjcxODBEMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAAyADIAAAJ8jI+pwM0Ko5zGOYrzsk97zHXfCIUAiSZmygZri77wKM9ebWd4Tu285PuVQkIdsdg7IoHK5ZDjZEKjTwu1ekmZttyu9wsOi8fksvmMTqvX7LYbzQpG5U760o7EF/VC/s/PA5gjaEM4YwiD2KIY13RV4fjIqBV5NRlTSaVYAAA7');
+		background-size: 52%;
+	    background-repeat: no-repeat;
+	    background-position: center center;
+	}
+
+	#vie_col1_content.menu_fallback.open_sub .submenu_header h5::before,
+	#vie_col1 > #vie_col1_content.open_sub > ul.vie-vlist li.active > strong::before,
+	#vie_col1 > #vie_col1_content.open_sub > ul.submenu_header > li.active a::before,
+	#sidr .sidr-inner > .sidr-class-vie-subcl > h5.is-opened::before{
+		content: '';
+		background-image: url('data:image/gif;base64,R0lGODlhMgAyAIABAP///////yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTc5MjFGRjVDMDQ4MTFFNUFFRTZBRUIyQjM2QTFFMjIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NTc5MjFGRjZDMDQ4MTFFNUFFRTZBRUIyQjM2QTFFMjIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1NzkyMUZGM0MwNDgxMUU1QUVFNkFFQjJCMzZBMUUyMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1NzkyMUZGNEMwNDgxMUU1QUVFNkFFQjJCMzZBMUUyMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAAyADIAAAJHjI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8cTQNf2jef6zvf+DwwKh8Si8YhMKpfMJlIGjUqn1Kr1is1qt9yu9wsOJwoAOw==');
+	}
+
+
+	#vie_col1_content.menu_fallback .submenu_header h5::before,
+	#vie_col1 > #vie_col1_content > ul.vie-vlist li.active > strong::before,
+	#vie_col1 > #vie_col1_content > ul.submenu_header > li.active a::before{
+		/*content: '+';*/
+		line-height: 19px;
+		font-size: 15px;
+		position: absolute;
+		left: 10px;
+		top: 50%;
+		margin-top: -10px;
+		width: 20px;
+		height: 20px;
+		background-color: #3379A9 !important;
+		color: #ffffff;
+		text-align: center;
+		transition: 0.2s ease-out;
+	}
+	#vie_col1_content.menu_fallback .submenu_header h5:hover::before,
+	#vie_col1_content.menu_fallback .submenu_header h5:focus::before,
+	#vie_col1 > #vie_col1_content > ul.vie-vlist li.active > strong:hover::before,
+	#vie_col1 > #vie_col1_content > ul.vie-vlist li.active > strong:focus::before,
+	#vie_col1 > #vie_col1_content > ul.submenu_header > li.active a:hover::before,
+	#vie_col1 > #vie_col1_content > ul.submenu_header > li.active a:focus::before{
+		background-color: #3379A9;
+	}
+	#vie_col1_content.menu_fallback.open_sub .submenu_header h5::before,
+	#vie_col1 > #vie_col1_content.open_sub > ul.vie-vlist li.active > strong::before,
+	#vie_col1 > #vie_col1_content.open_sub > ul.submenu_header > li.active a::before{
+		-moz-transform: scaleX(-1);
+	    -webkit-transform: scaleX(-1);
+	    -o-transform: scaleX(-1);
+	    transform: scaleX(-1);
+	    -ms-filter: fliph; /*IE*/
+	    filter: fliph; /*IE*/
+	}
+	
+	#vie_col1 > #vie_col1_content li.active.nosub{
+		display: none;
+	}
+	#vie_col1 > #vie_col1_content ul.vie-vlist > li ul {
+		padding: 0;
+		margin: 0;
+	}
+	#vie_col1 > #vie_col1_content ul.vie-vlist > li a{
+		background-color: #f2f2f2 ;
+		border-top: 1px solid #ffffff;
+		padding: 8px 5px 8px 10px;
+		width: auto;
+		margin: 0;
+	}
+	#vie_col1 > #vie_col1_content ul.vie-vlist > li a:hover,
+	#vie_col1 > #vie_col1_content ul.vie-vlist > li a:focus{
+		background-color: #d1d1d1;
+	}
+	#vie_col1 > #vie_col1_content ul.vie-vlist > li > ul > li > ul > li a{
+		padding-left: 15px;
+	}
+	#vie_col1 > #vie_col1_content ul.vie-vlist > li > ul > li > ul > li > ul > li a{
+		padding-left: 20px;
+	}
+
+	#vie_col1 > #vie_col1_content:focus ul.vie-vlist,
+	#vie_col1 > #vie_col1_content:focus ul.vie-channelnav,
+	#vie_col1 > #vie_col1_content:focus .vie-vlist ul,
+	#vie_col1 > #vie_col1_content.open_sub ul.vie-vlist,
+	#vie_col1 > #vie_col1_content.open_sub ul.vie-channelnav,
+	#vie_col1 > #vie_col1_content.open_sub .vie-vlist ul{
+		display: block !important;
+	}
+	#vie_col1 > #vie_col1_content ul.vie-vlist > li > strong{
+		overflow: hidden;
+		border: 0 none;
+	}
+	#vie_col1 > #vie_col1_content ul.vie-channelnav ul.vie-vlist > li > strong{
+		display: block;
+		background-color: #e0e0e0;
+		border: 0;
+		border-top: 1px solid #ffffff;
+		color: #444444;
+		padding: 7px 10px;
+	}
+	#vie_col1 > #vie_col1_content ul.vie-vlist li.active > strong{
+		padding: 0;
+		margin: 0;
+		width: auto;
+	}
+	#vie_col1 > #vie_col1_content ul.vie-vlist li.active > strong a{
+		padding: 0;
+		border: 0;
+	}
+	ul.vie-vlist li ul li:last-child{
+		margin: 0;
+	}
+
+	#vie_col1_content #vie_ressort-nav{
+		display: none !important; 
+	}
+	#vie_col1_content.menu_fallback .submenu_header h5{
+		display: block !important;
+		position: relative;
+		left: 0;
+		height: auto;
+		margin: 5px 0 0 0;
+		cursor: pointer;
+	}
+
+
+
+	/* Fixed Header Anker Fix */ 
+
+	#vie_col2_content a[id]:empty { 
+	    margin-top: -80px;      
+	    padding-bottom: 80px; 
+	    display: block; 
+	  }
+	a[name]:not(:empty):before { 
+	  display: block; 
+	  content: " "; 
+	  margin-top: -80px; 
+	  height: 80px; 
+	  visibility: hidden; 
+	}
+
+
+	/* Suche: Veranstaltung */
+
+	#vie_col1_content > .vie-sidebar-suche button{
+		right: 0;
+	}
+
+
+	/* Breadcrumb Button */
+	#vie_breadcrumbs{
+		margin-bottom: 5px;
+		width: 70%;
+		padding-left: 0.3em;
+	}
+	.vie-startseite #vie_breadcrumbs span.vie-subcl{
+		padding: 0;
+	}
+	#vie_breadcrumbs ol > li{
+		background-image: none;
+		display: block;
+		margin: 14px 0 0 0;
+		padding: 0;
+	}
+	/*body.nobreadcrumb #vie_breadcrumbs,*/
+	#vie_breadcrumbs ol > li{
+		display: none;
+	}
+	#vie_breadcrumbs ol li.last-link{
+		display: block;
+	}
+	#vie_breadcrumbs ol li.last-link a{
+		position: relative;
+		color: #555555;
+		font-size: 1.2em;
+		padding-left: 13px;
+		display: block;							
+	}
+	#vie_breadcrumbs ol li.last-link a::before{
+		border-right: 2px solid #555555;
+	    border-top: 2px solid #555555;
+	    content: "";
+	    height: 6px;
+	    margin-top: -3px;
+	    position: absolute;
+	    left: 0;
+	    top: 50%;
+	   -moz-transform:rotate(225deg); /* Firefox 3.6 Firefox 4 */
+		-webkit-transform:rotate(225deg); /* Safari */
+		-o-transform:rotate(225deg); /* Opera */
+		-ms-transform:rotate(225deg); /* IE9 */
+		transform:rotate(225deg); /* W3C */
+	    width: 6px;
+	}
+
+	#vie_fontsize{
+		top: 6.2em;
+		right: 1.2em;
+	}
+	/*
+	#vie_main.search_on_top #vie_fontsize{
+		top: 10.4em;
+	}*/
+	body.nobreadcrumb #vie_main.search_on_top #vie_fontsize{
+		top: 6.1em;
+	}
+	
+	/*
+	#vie_fontsize ul li{
+		float: left;
+		overflow: hidden;
+		width: 2em;
+		padding: 2px;
+		background-color: #f8f8f8; 
+		border: 1px #ccc solid;
+		margin-left: -1px;
+	}
+	#vie_fontsize ul li:first-child{
+		margin-left: 0;
+	}
+	#vie_fontsize ul li a{
+		line-height: 25px;
+		letter-spacing: 0.6em;
+  		text-align: center !important;
+  		text-decoration: none !important; 	
+	}
+	*/
+
+		/* Sidr */
+
+	#sidr .sidr-class-vie-c40l .sidr-class-active{
+		display: none !important;
+	}
+	#sidr .sidr-class-vie-c40l .sidr-class-active.show{
+		display: block !important;
+	}
+
+	#sidr #sidr-id-vie_form-bezirke button,
+	#sidr > .sidr-inner > .sidr-class-vie-subcl > ul,
+	#sidr #sidr-id-vie_channel > span,
+	#sidr #sidr-id-vie_channel em,
+	#sidr #sidr-id-vie_channel > select,
+	#sidr .sidr-inner > span,
+	#sidr .sidr-inner > select{
+		display: none;
+	}
+
+	.sidr-class-vie-c40l a{
+		padding: 13px 15px !important;
+	}
+
+	#sidr > .sidr-inner > .sidr-class-vie-subcl > h5{
+		position: relative;
+		padding-left: 40px;
+		cursor: pointer;
+	}
+
+	#sidr #sidr-id-vie_lang-4 a,
+	#sidr #sidr-id-vie_lang-5 a{
+		padding-left: 38px;
+	}
+	#sidr #sidr-id-vie_lang-4 a{
+		background: url(/layout-a/wien.at/img/icons-head.png) no-repeat scroll 15px -200px rgba(0, 0, 0, 0);
+	}
+	#sidr #sidr-id-vie_lang-5 a{
+		background: url(/layout-a/wien.at/img/icons-head.png) 15px -305px no-repeat;
+	}
+
+	.sidr-class-vie-channel-05 #sidr-id-vie_form-bezirke select{
+		height: 30px;
+		margin: 10px 0;
+		background-color: #ffffff;
+	}
+
+	 
+
+	/* Plus Icon */
+	#sidr .sidr-inner > .sidr-class-vie-subcl > h5::before{
+		/*content: '+';*/
+		line-height: 19px;
+		font-size: 15px;
+		position: absolute;
+		left: 13px;
+		top: 50%;
+		margin-top: -10px;
+		width: 20px;
+		height: 20px;
+		background-color: #656565 !important;
+		color: #ffffff;
+		text-align: center;
+		transition: 0.2s ease-out;
+	}
+	#sidr .sidr-inner > .sidr-class-vie-subcl > h5:hover::before,
+	#sidr .sidr-inner > .sidr-class-vie-subcl > h5:focus::before{
+		background-color: #999999;
+	}
+	#sidr .sidr-inner > .sidr-class-vie-subcl > h5.is-opened::before{
+		/*content: '-';*/
+		-moz-transform: scaleX(-1);
+	    -webkit-transform: scaleX(-1);
+	    -o-transform: scaleX(-1);
+	    transform: scaleX(-1);
+	    -ms-filter: fliph; /*IE*/
+	    filter: fliph; /*IE*/
+	}
+
+	#sidr .sidr-inner > .sidr-class-vie-subcl > .js-to_expand{
+		display: none;
+	}
+
+}
+
+
+/* 560-720px */
+@media only screen and (min-width: 37.5em) and (max-width: 45em){
+
+
+	#vie_col1_content.vie-artikel .vie-sidebar-suche form{
+		padding-right: 0;
+	}
+
+	#vie_col1_content.vie-artikel .vie-sidebar-suche{
+		margin: 0;
+		padding: 0;
+		margin-bottom: 1.3em;
+	}
+	#vie_col1_content.vie-artikel > .vie-sidebar-suche input[type=image]{
+		top: 11px;
+		right: 6px;
+	}
+	#vie_col1_content.vie-artikel .vie-sidebar-suche form{
+		padding-right:  0;
+	}
+	#vie_col1_content.vie-artikel > .vie-sidebar-suche input#vie_suche-sidebar-text-1{
+		width: 86% !important;
+	}
+
+	#vie_col1_content.vie-artikel > .vie-sidebar-suche{
+		background-color: transparent;
+	}
+	#vie_col1_content.vie-artikel > .vie-sidebar-suche fieldset{
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+}
+/* 600px */
+@media only screen and (max-width: 37.5em){
+
+
+	.vie-startseite #vie_col1{
+		width: 100%;
+	}
+	.vie-startseite #vie_col2{
+		width: 100%;
+	}
+
+	/* Teaser Startseite 2-Spaltig */
+	
+	.vie-startseite #vie_col2 #vie_col2_content > div{
+		clear: none;
+		float: left;
+		width: 49%;
+		box-sizing: border-box;
+		border-bottom: 0 none !important;
+	}
+	
+	.vie-startseite #vie_col2 #vie_col2_content > div:nth-of-type(2n + 1){
+		clear: both;
+		margin-left: 0;
+		margin-right: 2%;
+	}
+
+	.vie-startseite #vie_col1_content #vie_col2 #vie_col2_content > div:nth-of-type(2n + 1){
+		margin-right: 0;
+	}
+
+	.vie-startseite #vie_col1 .vie-teaser-zweispaltig{
+		border-top: 0 none;
+	}
+
+	/* Suche */
+
+	#vie_col1_content.vie-artikel > .vie-sidebar-suche input#vie_suche-sidebar-text-1{
+		max-width: 100%;
+		width: 100% !important;
+	}
+
+	table.vie-table-suchergebnis td, table.vie-table-suchergebnis th{
+		padding-left: .3em;
+		padding-right: .3em;
+	}
+
+
+	/* 
+		Content
+	*/
+	/*
+	#vie_col2_content .editableDocument img.bde-image-view{
+		width: 100% !important;
+		float: none !important;
+	}*/
+
+
+	#vie_veranstaltungen .vie-veranstaltungen-head,	
+	#vie_veranstaltungen{
+		overflow: hidden;
+	} 
+	#vie_veranstaltungen .mobile_scrollable{
+		overflow: visible;
+	}
+
+	/* col2 in col1 */
+	#vie_col1_content.vie-start #vie_col2{
+		display: block;
+	}
+	.vie-startseite #vie_main > #vie_col2{
+		display: none;
+	}
+	.vie-startseite #vie_main.search_on_top > #vie_col2{
+		display: block;
+	}
+
+	#vie_col1_content.vie-start #vie_col2,
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content,
+	#vie_col1_content.vie-start #vie_col2 img{
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content > div{
+		width: auto;
+		overflow: hidden;
+		padding-left: 50%;
+		position: relative;
+		min-height: 160px;
+	}
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content > div h2,
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content > div p{
+		padding-left: 10px;
+	}
+	
+	#vie_col1_content.vie-start #vie_col2_content img.vie-img-flexible{
+		width: 50% !important;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	#vie_col1_content.vie-start #vie_col2,
+	#vie_col1_content.vie-start #vie_col2 .vie-teaser{	
+		border: 0;
+	}
+	#vie_col1_content.vie-start #vie_col2 > #vie_col2_content.vie-start{
+		font-size: 100.01%;
+	}
+
+	.vie-start #vie_veranstaltungen{
+		padding: 8px 1.0em 3px 3.5%;
+  		margin: 0 -1.4em 0 -1.1em;
+	}
+
+	#vie_col1 .vie-start > .vie-subcolumns{
+		border-top: 0 none;
+	}
+
+/*
+	#vie_col1_content.vie-start #vie_col2 .vie-teaser{	
+		font-size: 100%;
+	}
+	*/
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content img,
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content h2,
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content p,
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content ul.ul_unmarked{
+		margin-left: 0 !important;
+	}
+
+
+	/* Tabreiter Dropdown
+
+	.vie-tabsreiter-content{
+		padding: 0 !important;
+		border: 0 none !important;
+	}
+  
+	.vie-tabsreiter{
+		position: relative;
+		width: 100%;
+	}
+	.vie-tabsreiter ul.tabs-list{
+		position: absolute;
+		top: 35px;
+		width: 93%;
+		overflow: visible;
+		background-color: #edecec !important;
+	}
+	.vie-tabsreiter ul.tabs-list li{
+		display: none !important;
+		float: none !important;
+		width: 100%;
+		margin: 0;
+		border: 0 none;
+		overflow: hidden;
+	}
+	
+	.vie-tabsreiter ul.tabs-list li a{
+		display: block;
+		width: 100%;
+		border: 0 none !important; 
+		margin: 0 !important;
+	}
+	.vie-tabsreiter ul.tabs-list li.current{
+		display: block !important;
+		position: absolute;
+		top: -35px;
+		left: auto;		
+		border: 1px solid #999999;
+		background-color: #edecec !important;
+		padding: 7px 0 !important;
+	}
+	.vie-tabsreiter ul.tabs-list li.current a{
+		font-size: 120%;
+		padding: 10px 15px;
+		background-color: #edecec !important;
+	}  */
+
+	
+
+}
+/* 500px */
+@media only screen and  (max-width: 31.25em){
+	.bde-image-block{
+		float: left;
+		max-width: 49.5% !important;
+		box-sizing: border-box;
+	}
+	
+	.bde-image-block:nth-of-type(2n + 1) {
+		margin-right: 10px;
+	}
+	.bde-image-block img{
+		height: auto !important;
+		width: 100% !important;
+	}
+}
+
+/* kleiner 530px, kein embedded stadtplan 
+@media only screen and (max-width: 33.0625em) {
+  .vie-markup #viennaGisContainer0, .vie-markup #viennaGisContainer1 {
+      display:none;
+  }
+} */
+
+/* embedded Stadtplan */
+/* max-width 520px */
+@media only screen and (max-width: 32.5em){
+  #viennaGisContainer0 {
+    left: auto !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  #gis_frm_appl0 {
+    width: 100% !important;    
+  }
+}
+
+/* max-width 440px */
+@media only screen and (max-width: 27.5em){
+  #gugContainer_panGug {
+    display: none;
+  }
+  
+  .viennaGisGugContainerZoomGugMini {
+    left: 40px !important;
+    top: 10px !important;
+  }
+}
+
+/* max-width 400px */
+@media only screen and (max-width: 25em){
+  #kachelButtonContainer {
+    display: none;
+  }
+}
+/* /embedded Stadtplan */
+
+/* 450px */
+@media only screen and  (max-width: 28.125em){
+	table.vie-table-suchergebnis td img{
+		display: none;
+	}
+	.vie-rk-box > .vie-subcolumns .vie-c50r,
+	#vie_veranstaltungen .vie-veranstaltungen-head .vie-c50r,
+	#vie_veranstaltungen .vie-veranstaltungen-foot .vie-c70r,
+	#vie_veranstaltungen .vie-veranstaltungen-foot .vie-c50r{
+		clear: both;
+		float: left;
+		width: auto !important;
+		margin-left: 0;
+		margin-top: 5px;
+	}
+	#vie_veranstaltungen .vie-veranstaltungen-head .vie-c50r .vie-subcr{
+		margin-left: 0;
+	}
+	#vie_breadcrumbs{
+		width: 60%;
+	}
+}
+
+/* 395px */
+@media only screen and  (max-width: 24.68em){
+
+	.vie-subcolumns, .editableDocument{
+		overflow: visible;
+	}
+	#vie_col3 .vie-teaser-text .vie-subcolumns,
+	.vie-formblk-content.vie-subcolumns,
+	.vie-formblk-content .vie-subcolumns{
+		overflow: hidden;
+	}
+	.vie-subcolumns{
+		border-top: 0 none;
+	}
+
+	.vie-startseite #vie_main #vie_col2 .vie-teaser,
+	.vie-teaser-grid2.last{
+		border-bottom: 0 none;
+	}
+
+	#vie_col1 #vie_col1_content hr{
+		width: auto;
+	}
+
+	#vie_col3 #vie_col3_content{
+		max-width: 287px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#vie_col3 #vie_col3_content > div:nth-of-type(n){
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+	#vie_col3 #vie_col3_content .vie-sidebar-suche{
+		display: none !important;
+	}
+
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content > div{
+		width: 100%;
+		padding-left: 0;
+		min-height: 0;
+	}
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content > div h2,
+	#vie_col1_content.vie-start #vie_col2 #vie_col2_content > div p{
+		padding-left: 0;
+	}
+	
+	#vie_col1_content.vie-start #vie_col2_content img.vie-img-flexible{
+		width: 100% !important;
+		position: static;
+	}
+	
+	#vie_col3 #vie_col3_content > div,
+	#vie_col2 #vie_col2_content > div,
+	#vie_col1 .vie-c50r,
+	#vie_col1 .vie-c50l,
+	#vie_col2 .vie-c50r,
+	#vie_col2 .vie-c50l{
+		float: none;
+		clear: both;
+		width: 100% !important;
+		display: block !important;
+		border: 0 none;
+	}
+	.vie-c50l{
+		margin-bottom: 15px;
+	}
+	#vie_col1 .vie-rk-box > .vie-subcolumns .vie-c50l > .vie-subcl,
+	#vie_col1 .vie-rk-box > .vie-subcolumns .vie-c50l{
+		margin-bottom: 0;
+	}
+	#vie_col1 .vie-rk-box > .vie-subcolumns .vie-c50r{
+		width: auto !important;
+		margin-top: 0; 
+	}
+
+	#vie_veranstaltungen .vie-c50l,
+	.vie-teaser .vie-c50r,
+	.vie-teaser .vie-c50l{
+		margin-bottom: 0;
+	}
+
+	#vie_veranstaltungen .vie-c50r{
+		margin: 4px 0 14px 0;
+	}
+	#vie_veranstaltungen .vie-c50r .vie-subcr > *{
+		margin-left: 0;
+	}
+/*
+	.vie-teaser-grid2,
+	.vie-teaser-grid2 .vie-c50l,
+	.vie-c50r img:hover,
+	.vie-c50l img:hover,
+	.vie-c50r img,
+	.vie-c50l img{
+		border: 0 none !important;
+	}*/
+
+	.vie-teaser-zweispaltig p,
+	.vie-teaser-zweispaltig h1,
+	.vie-teaser-zweispaltig h2{
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	#vie_bezirk-steckbrief{
+		overflow: hidden;
+	}
+	/*
+	#vie_fontsize ul li{
+		padding: 0;
+		margin-top: 4px;
+	}*/
+	.bde-image-block{
+		float: none;
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+	.vie-teaser-grid2 .vie-c50r img,
+	.vie-teaser-grid2 .vie-c50r h2,
+	.vie-teaser-grid2 .vie-c50r p,
+	.vie-teaser-grid2 .vie-c50r ul.ul_unmarked{
+		margin-left: 0 !important;
+	}
+	.vAPOutContainer.vie-video-50l,
+	img.bde-image-view,
+	#vie_main .vie-c50l img.bde-image-view,
+	#vie_main .vie-c50r img.bde-image-view{
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		width: 100% !important;
+		height: auto !important;
+	}
+	img.vie-mobile-img-noscale{
+		width: auto !important;
+		margin-right: 10px !important;
+	}
+
+	.vie-startseite #vie_main #vie_col3 .vie-teaser > .vie-teaser-click > img{
+		max-height: 150px;
+		margin-left: auto;
+		margin-right: auto;
+		width: auto !important;
+		max-width: 100%;
+	}
+
+	/* Hotline Tables */
+	table.vie-resp-table{
+		border: 0 none;
+		margin-top: -1em;
+		margin-bottom: 3em;
+	}
+	table.vie-resp-table th{
+		display: none;
+	}
+	table.vie-resp-table,
+	table.vie-resp-table tbody,
+	table.vie-resp-table tr,
+	table.vie-resp-table tr td{
+		display: block;
+		padding: 0;
+		width: 100%;
+	}
+	table.vie-resp-table tr{
+		border-top: 1px solid #c8c8c8;
+		padding: 8px 1.2em 3px 3.5%;
+		margin: 0 -1.4em 0 -1.1em;
+		position: relative;
+	}
+	table.vie-resp-table tr:first-child{
+		display: none;
+	}
+	table.vie-resp-table tr td{
+		border: 0 none;
+		font-size: 120%;
+		padding: 0 0 3px 0;
+	}
+	table.vie-resp-table tr td:first-child{
+		font-size: 130%;
+		font-weight: bold;
+	}
+	#vie_main table.vie-resp-table tr td ul li,
+	#vie_main table.vie-resp-table tr td ul,
+	#vie_main table.vie-resp-table tr td p{
+		margin: 0;
+	}
+	/*
+	table.vie-resp-table tr td p a{
+		color: #000000 !important;
+		text-decoration: none !important;
+	}*/
+	table.vie-resp-table tr td a[href^="tel:"]{
+		position: relative;
+		padding-left: 1.8em;
+	}
+
+	table.vie-resp-table tr td a[href^="tel:"]::before{
+		position: absolute;
+		left: 0;
+		top: -2px;
+		margin-top: 0em;
+		background-image: url(/layout-a/wien.at/img/hotline.svg);  
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 65%;
+		content: '';
+		width: 1.5em;
+		height: 1.5em;
+	}
+	/*
+	table.vie-resp-table tr::after{
+		position: absolute;
+		right: 12px;
+		top: 50%;
+		margin-top: -1.5em;
+		background-image: url(https://wienat.test.magwien.gv.at/layout-a/wien.at/img/hotline.svg);
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 65%;
+		content: '';
+		width: 3em;
+		height: 3em;
+		border: 1px solid #000000;
+		border-radius: 50%;
+	}*/
+}
+
+@media only screen and  (max-width: 23.75em){
+	/* #vie_notrufe .vie-subcr > .vie-kontakt{
+		width: 55px;
+		right: 70px;
+	} */
+	/* .vie-tabs-content h5#accessibletabscontent0-0{
+		 right: 0;
+	} */
+
+}
+
+

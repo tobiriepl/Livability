@@ -1,0 +1,21 @@
+/* 2010-01-12 12:00:00 MEZ created by tcaspers@mac.com */
+var fdLocale = {
+
+/* Uncomment the following line if the first day of the week does not start on Monday */
+//firstDayOfWeek:0,
+
+fullMonths:["J\u00E4nner", "Februar", "M\u00E4rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+
+monthAbbrs:["Jan\u002E", "Feb\u002E", "M\u00E4r\u002E", "Apr\u002E", "Mai", "Jun\u002E", "Jul\u002E", "Aug\u002E", "Sep\u002E", "Okt\u002E", "Nov\u002E", "Dez\u002E"],
+
+fullDays:["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"],
+
+// mit Punkt
+// dayAbbrs:["Mo\u002E", "Di\u002E", "Mi\u002E", "Do\u002E", "Fr\u002E", "Sa\u002E", "So\u002E"],
+
+// ohne Punkt
+dayAbbrs:["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+
+titles:["vorheriger Monat", "n\u00E4chster Monat", "vorheriges Jahr", "n\u00E4chstes Jahr", "Heute", "Kalender anzeigen", "KW", "Woche [[%0%]] von [[%1%]]", "Woche", "W\u00E4hlen Sie ein Datum", "Klicken \u0026 ziehen zum Verschieben", "Zeige [[%0%]] zuerst", "Zu Heute wechseln", "Datum deaktivieren"]};
+
+try { datePickerController.loadLanguage(); } catch(err) {}

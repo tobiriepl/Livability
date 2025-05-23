@@ -1,0 +1,467 @@
+/* Import der wien.at/tv struktur 
+@import url("tvpage.css");
+*/
+
+#videoAreaFacts { 
+margin-top:20px;
+}
+#videoAreaPlayer > * { 
+width:100%;
+height:100%;
+margin-bottom:20px;
+}
+#videoAreaPlayer360Frame {
+	border:none;
+	min-height:180px;
+	overflow:hidden;
+	width:100%;
+}
+#videoAreaPlayerPano {
+	height:100%;
+	min-height:160px;
+	width:100%;
+}
+.vAPOutContainer:not(.video360) {
+	min-height:300px;
+	margin-bottom: 31px;
+}
+.vAPOutContainer.video360 {
+	margin-bottom:15px;
+}
+
+.aAPOutContainer {
+min-height:30px;
+margin-bottom: 50px;
+}
+.aAPOutContainer > div{
+min-height:auto;
+}
+
+.aAPOutContainer > div > object{
+border-top: 1px solid #cccccc;
+}
+
+.jwcontrolbar {
+display:inline-block !important;
+bottom: -38px !important;
+left: 0px  !important;
+right: 0px  !important;
+opacity: 1 !important;
+}
+
+.jwfullscreen .jwcontrolbar {
+bottom: 0px !important;
+}
+
+.jwfullscreen .jwcaptions {
+bottom: 50px;
+}
+
+.jwgroup.jwcenter {
+left: 84px;
+right: 144px;
+}
+
+.nocaps .jwgroup.jwcenter {
+left: 84px;
+right: 114px;
+}
+
+.videoAreaControlsToggle {
+position:absolute;
+display:none
+}
+
+.vAPOutContainer .videoAreaControlsToggle a{
+display: block;
+margin-top:0em;
+width: 34px;
+height: 34px;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+background-color:#ffffff;
+opacity: 0.8;
+top: 6px;
+left: 6px;
+z-index: 1;
+position: relative;
+}
+
+.aAPOutContainer .videoAreaControlsToggle a{
+display: block;
+margin-top:0em;
+width: 32px;
+height: 34px;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+background-color:#ffffff;
+opacity: 0.8;
+z-index: 1;
+position: absolute;
+}
+
+.videoAreaControlsToggle a:hover, 
+.videoAreaControlsToggle a:focus{
+background-color:#f0f0f0;
+}
+
+.videoAreaControlsToggle a.active{
+background-color:#f0f0f0;
+-webkit-border-radius: 2px 0 0 2px;
+-moz-border-radius: 2px 0 0 2px;
+border-radius: 2px 0 0 2px;
+}
+
+
+.vie_tv-embedCodeToggle a{
+margin-right:0.4em;
+display:inline-block;
+float: left;
+padding: 3px 20px 3px 30px;
+text-decoration:none !important;
+color:#666666 !important;
+}
+
+.vie_tv-embedCodeToggle a.vie_tv-EmbedClass{
+background:transparent url(../images/icon_einbetten.svg) no-repeat 6px 6px;
+background-size:18px 18px;
+border: 1px solid #e5e5e5;
+}
+.vie_tv-embedCodeToggle a.vie_tv-DownloadClass{
+background:transparent url(../images/icon_download.svg) no-repeat 6px 6px;
+background-size:18px 18px;
+border: 1px solid #e5e5e5;
+}
+.vie_tv-embedCodeToggle a.vie_tv-TransClass{
+background:transparent url(../images/icon_mitschrift.png) no-repeat 0 0;
+border: 1px solid #e5e5e5;
+}
+
+.vie_tv-embedCodeToggle a:hover,
+.vie_tv-embedCodeToggle a:focus,
+.vie_tv-embedCodeToggle a.active {
+background-color:#e5e5e5;
+}
+
+.videoAreaControlsToggle img {
+padding:4px 0 0 4px;
+width: 30px;
+height: 30px;
+box-sizing: border-box;
+}
+
+.vAPOutContainer .videoAreaControls {
+display:none;
+padding: 1px 0 1px 8px;
+background-color:#f0f0f0;
+opacity: 0.8;
+margin: 6px 0 0 40px;
+z-index: 1;
+position: absolute;
+}
+
+.aAPOutContainer .videoAreaControls {
+display:none;
+padding: 1px 0 1px 8px;
+background-color:#f0f0f0;
+opacity: 0.8;
+margin: 0 0 0 26px;
+z-index: 1;
+position: absolute;
+}
+
+.videoAreaControls ul{
+list-style-type:none !important;
+margin: 0em 0 0em 0em !important;
+padding: 0 0 0 0 !important;
+}
+
+.videoAreaControls ul li{
+float: left !important;
+display: inline-block !important;
+margin: 1px 8px 1px 0px !important;
+}
+
+
+.vac_playvid {
+width:30px;
+height:30px;
+text-indent: -9999px; 
+display:inline-block;
+}
+
+.vac_playvid.active{
+background:transparent url(../skins/wienat/controlbar/playButton.png) no-repeat 0 0;
+}
+
+.vac_playvid.active:hover,
+.vac_playvid.active:focus{
+background:transparent url(../skins/wienat/controlbar/playButtonOver.png) no-repeat 0 0;
+border: 0;
+}
+
+.vac_playvid.passive{
+background:transparent url(../skins/wienat/controlbar/pauseButton.png) no-repeat 0 0;
+}
+
+.vac_playvid.passive:hover,
+.vac_playvid.passive:focus{
+background:transparent url(../skins/wienat/controlbar/pauseButtonOver.png) no-repeat 0 0;
+border: 0;
+}
+
+.vac_mutevid {
+width:30px;
+height:30px;
+text-indent: -9999px; 
+display:inline-block;
+}
+
+.vac_mutevid.active{
+background:transparent url(../skins/wienat/controlbar/muteButton.png) no-repeat 0 0;
+}
+
+.vac_mutevid.active:hover,
+.vac_mutevid.active:focus{
+background:transparent url(../skins/wienat/controlbar/muteButtonOver.png) no-repeat 0 0;
+border: 0;
+}
+
+.vac_mutevid.passive{
+background:transparent url(../skins/wienat/controlbar/unmuteButton.png) no-repeat 0 0;
+}
+
+.vac_mutevid.passive:hover,
+.vac_mutevid.passive:focus{
+background:transparent url(../skins/wienat/controlbar/unmuteButtonOver.png) no-repeat 0 0;
+border: 0;
+}
+
+.vac_stopvid {
+width:30px;
+height:30px;
+text-indent: -9999px; 
+display:inline-block;
+}
+
+.vac_stopvid.active{
+background:transparent url(../skins/wienat/controlbar/stopButton.png) no-repeat 0 0;
+}
+
+.vac_stopvid.active:hover,
+.vac_stopvid.active:focus{
+background:transparent url(../skins/wienat/controlbar/stopButtonOver.png) no-repeat 0 0;
+border: 0;
+}
+
+.vac_ccvid {
+width:30px;
+height:30px;
+text-indent: -9999px; 
+display:inline-block;
+}
+
+.vac_ccvid.active{
+background:transparent url(../skins/wienat/controlbar/cc.png) no-repeat 0 0;
+}
+
+.vac_ccvid.active:hover,
+.vac_ccvid.active:focus{
+background:transparent url(../skins/wienat/controlbar/ccOver.png) no-repeat 0 0;
+border: 0;
+}
+
+.vac_ccvid.passive{
+background:transparent url(../skins/wienat/controlbar/ccOff.png) no-repeat 0 0;
+}
+
+.vac_ccvid.passive:hover,
+.vac_ccvid.passive:focus{
+background:transparent url(../skins/wienat/controlbar/ccOver.png) no-repeat 0 0;
+border: 0;
+}
+
+.vac_hidden {
+position:absolute; left:-1000px; top:-1000px; width:1px; height: 1px;
+overflow:hidden; display:inline;
+}
+
+.hidetext{
+text-indent: -9999px; 
+display:inline-block;
+}
+
+span.jwcontrolbar span button {
+text-indent: -9999px; 
+display:inline-block;
+}
+
+span.jwcontrolbar .jwrail .jwrailgroup {
+width: 95%;
+}
+
+span.jwcontrolbar .jwvolumeH .jwrail .jwrailgroup {
+width: 100%;
+}
+
+.vie_tv-embedCode {
+display:none;
+}
+
+.vie_tv-embedCode fieldset{
+display:block;
+background-color: #ffffff !important;
+border: none !important;
+margin: 20px 0;
+}
+
+.vAPOutTranscript {
+display:none;
+border-bottom: 1px solid #CCCCCC;
+width: 100%;
+margin: 20px 0;
+}
+
+h2.vAPOutTransHead {
+border-bottom: 1px solid #CCCCCC;
+padding-bottom: 5px;
+margin-bottom: 5px;
+}
+
+.jwdisplayIcon {
+height: 60px !important;
+}
+
+.vie-video .vie_amb_det_link {
+font-size: 0.8em;
+}
+
+.vie_amb_det_link.htmlmode {
+margin-bottom: -20px;
+margin-top: 40px;
+}
+
+.vie_amb_det_audio.emb_html {
+margin-bottom: 0;
+margin-top: 10px;
+}
+
+.vie_amb_det_audio.emb_flash {
+margin-bottom: 0;
+margin-top: 10px;
+text-align:right;
+}
+
+.videoAreaControls.emb_flash.typ_audio {
+margin-top: 42px;
+}
+
+.videoAreaControlsToggle.emb_flash.typ_audio {
+margin-top: 42px;
+}
+
+.vAPOutContainer .outercapswrapper.active  {
+margin-bottom: 0px;
+}
+
+.vAPOutContainer .outercapswrapper .jwcaptions {
+overflow: auto;
+position: relative;
+top: 30px;
+width: 100% !important;
+background-color: #000000;
+}
+
+
+.vAPOutContainer .outercapswrapper .jwcaptions > div{
+position: static !important;
+background-color: #000000;
+padding: 5px;
+min-height: 40px;
+}
+
+.vAPOutContainer.vie-video-50l {
+width: 50%;
+float: left;
+display:inline-block;
+margin-right: 20px;
+}
+.vAPOutContainer.vie-video-50  {
+width: 50%;
+}
+
+.aAPOutContainer.apnofloatleft .jwcontrolbar,
+.aAPOutContainer.apfloatleft .jwcontrolbar {
+bottom: 0 !important;
+}
+
+.aAPOutContainer.apnofloatleft,
+.aAPOutContainer.apfloatleft {
+margin-bottom: 0px;
+}
+
+.aAPOutContainer.apfloatleft {
+width: 50%;
+float: left;
+display:inline-block;
+margin-right: 20px;
+margin-top: 10px;
+}
+
+.jwplayer .jwdisplayIcon div.jwicon {
+height: 100px;
+}
+
+.jwplayer .jwdisplayIcon {
+border-radius: 20px;
+}
+
+.jwplay button:focus {
+background-image: url(../skins/wienat/controlbar/playButtonOver.png) !important;
+}
+
+.jwcc button:focus {
+background-image: url(../skins/wienat/controlbar/ccOver.png) !important;
+}
+
+.jwmute button:focus {
+background-image: url(../skins/wienat/controlbar/muteButtonOver.png) !important;
+}
+.jwfullscreen button:focus {
+background-image: url(../skins/wienat/controlbar/fullscreenButtonOver.png) !important;
+}
+
+#videoAreaPlayer_controlbar .jwoverlay {
+margin-left: -10px !important;
+}
+
+.marginLeft { margin-left:1em; }
+.ui-autocomplete { z-index: 100 !important; }
+
+#videoAreaPlayer_controlbar .jwoverlay {
+margin-left: -10px !important;
+}
+.vAPOutContainer #videoAreaPlayer.jwplayer {
+	background-color:#e6e6e6 !important;
+} 
+
+.jwcontrols .jwvolumeH .jwrail {
+left: 10% !important;
+right: 10% !important;
+}
+
+.jwcontrols .jwvolumeH .jwvolumeHRail {
+    right: -8px !important;
+}
+
+/*chrome specific style*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.vAPOutContainer {
+		margin-bottom: 35px;
+	}
+	.vie_tv-embedCodeToggle a {
+		padding-top: 6px;
+	}
+}

@@ -1,0 +1,66 @@
+/*
+
+ * Name: audembedding.js
+ * Version: 3
+ * Date: 2014-03-01
+
+*/
+
+$(document).ready(function(){  
+
+	var vieAudioEmbedding = function(){
+	
+		var indexi_aud = 0;	
+		var audioObjectsArr = [];
+		var audioObjectsStyleArr = [];	
+		var aa_i = 0;
+		var aa_j = 0;
+		
+							
+		$('p.vie-audio').each( function(i, elemsel){ 				
+			var audParaLink = $(this).children("a");
+			audioObjectsArr[aa_i] = audParaLink;
+			audioObjectsStyleArr[aa_i] = "apnofloatleft";
+			aa_i = aa_i + 1;
+	  });  
+	    	
+	  aa_j = aa_i;
+	    	
+		$('p.vie-audio-l').each( function(i, elemsel){
+			var audParaLink = $(this).children("a");
+			audioObjectsArr[aa_j] = audParaLink;
+			audioObjectsStyleArr[aa_j] = "apfloatleft";
+			aa_j = aa_j + 1;
+	  });    
+	    	
+  	$.each(audioObjectsArr, function(i, elemsel){
+  	
+  		var mp3url = $(elemsel).attr("href");
+  		var mp3title = $(elemsel).html();
+			var styletype = audioObjectsStyleArr[i];
+
+
+			var audBoxDiv = '<div class="aAPOutContainer ' + styletype + '"> ' +
+				'<div id="videoAreaPlayer' + i + '" class="vAPClass"> ' +
+					'	F&uuml;r das Spielen von Audiofiles auf wien.at m&uuml;ssen Sie Javascript in Ihrem Browser aktivieren.<br /> ' +
+					' <a  href="' + mp3url + '">MP3 Download</a>' + 
+				'</div> ' +
+				'<div class="clearfix"></div> ' +
+			'</div> ' ;
+			
+			$(this).parent().replaceWith(audBoxDiv);
+						
+			$("#videoAreaPlayer" + i).wienvideo({
+					vId: i,
+					vTyp: "audio",
+					vCall: "embed",
+					vFile: mp3url,
+					vTitle: mp3title
+			});	
+
+  	}); // / each
+	
+	}(); 
+	
+
+});

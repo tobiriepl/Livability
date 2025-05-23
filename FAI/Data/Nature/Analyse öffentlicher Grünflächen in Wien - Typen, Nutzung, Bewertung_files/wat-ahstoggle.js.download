@@ -1,0 +1,126 @@
+/*
+
+ * Name: wat-ahstoggle.js
+ * Version: 2.5
+ * Date: 2018-02-06
+ * built by WH Digital GmbH (by order of MA 53) + Sindre Wimberger (MA 53)
+ * Changelog:
+ * 2.3 $.event.handle mit $.event.dispatch ersetzt für Kompatibilität mit aktueller jQuery Version - M53WIS
+ * 2.4 Formularabschnitt (class="vie-ahs-f) Anfangszustand: "geöffnet" - TRE
+ * 2.5 Formularabschnitt (class="vie-ahs-d) Anfangszustand: "geöffnet" - HOE
+ * 2.6 bei Klasse "vie-ahs-mobilefirst" für h1 dann kein Klappmechanismus - HOE
+*/
+<!--
+$(document).ready(function () {
+
+    // Eingabeunabhängiges Clickevent, sowohl für normalerweise klickbare als auch nichtklickbare Elemente geeignet.
+    var preventclick = false;
+
+    function handleAriaClick(e) {
+        if (!preventclick && (!e.keyCode || e.keyCode === 13)) {
+            //ToDo: || e.keyCode === $.ui.keyCode.SPACE
+            preventclick = true;
+            setTimeout(function () {
+                preventclick = false;
+            }, 1);
+            return $.event.special.ariaclick.handler.apply(this, arguments);
+        } else if (preventclick && e.type == 'click') {
+            e.preventDefault();
+            return false;
+        }
+        return undefined;
+    }
+    $.event.special.ariaclick = {
+        setup: function () {
+            $(this).bind('click keydown', handleAriaClick);
+            return true;
+        },
+        teardown: function () {
+            $(this).unbind('click keydown', handleAriaClick);
+            return true;
+        },
+        handler: function (e) {
+            e.type = 'ariaclick';
+            return $.event.dispatch.apply(this, arguments);
+        }
+    };
+
+    // 2015-10-28 Überschrift h2 in Amtshelferseiten mit Klasse "vie-ahs-ai"
+    // 2018-03-23 HOE   wenn h1 Klasse "vie-ahs-mobilefirst" dann nicht
+    if ($('.editableDocument h2').hasClass('vie-ahs-ai')
+      && ! $('.editableDocument h1').hasClass('vie-ahs-mobilefirst')) {
+		$("#vie_artikelfunktionen-oben .vie-artikel-drucken a").attr('onclick','').unbind('click');
+        $('body').addClass('vie-h2ahs');
+        // Steuerbox oben/unten
+        var box = '<div class="vie-toggleBox vie-clearfix"><a href="#" class="vie-showall vie-all-down">Alle Informationen ausklappen</a> <a href="javascript:void(0)" class="vie-printall">Ausgeklappte Informationen drucken</a></div>';
+        // Überschriften aria-Elemente zuweisen
+        var headlines = $('#vie_col2_content .editableDocument > h2');
+        var total = $('.editableDocument > h2').length;
+        headlines.each(function (index, e) {
+            var el = $(e);
+            if (index === total - 1 && $('.editableDocument div').hasClass('vie-recommendation')) {
+                var what = '.vie-recommendation';
+
+            } else {
+                var what = '.editableDocument h2';
+            }
+            el.nextUntil(what).wrapAll('<div class="vie-togglewrap" id="vie_toggle' + index + '">');
+            var nextId = el.next().attr('id');
+            el.attr({
+                'tabindex': '0',
+                'role': 'button',
+                'aria-expanded': 'false',
+                'aria-controls': nextId
+            });
+            
+            // 1.Element und Formularhinweise sind geöffnet
+            if (index === 0 || el.hasClass('vie-ahs-f') || el.hasClass('vie-ahs-d')) {
+                el.addClass('vie-toggleUp').attr('aria-expanded', 'true').next().show();
+                if (index === 0) {
+                $(box).insertBefore(el);
+                }
+
+            } else {
+                el.addClass('vie-toggleDown');
+            }
+            
+            // Überschriften Funktionalität
+            el.bind('ariaclick', function () {
+                $(this).toggleClass('vie-toggleUp').toggleClass('vie-toggleDown').next().toggle();
+                if (!($(this).attr('aria-expanded') == 'true')) {
+                    $(this).attr('aria-expanded', 'true');
+                } else {
+                    $(this).attr('aria-expanded', 'false');
+                }
+            });
+        });
+        // Steuerbox Funktionalitäten
+        // $('#vie_col2_content .vie-togglewrap:last').after(box);
+		$(box).clone(true).insertAfter("#vie_col2_content .vie-togglewrap:last");
+        var container = $('.vie-togglewrap');
+        $("#vie_col2_content .vie-showall").click(function () {
+            $('.vie-showall').toggleClass('vie-all-down').toggleClass('vie-all-up');
+            if ($(this).text() == "Alle Informationen ausklappen") {
+                container.show();
+                headlines.removeClass('vie-toggleDown').addClass('vie-toggleUp').attr('aria-expanded', 'true');
+                $('.vie-showall').text("Alle Informationen einklappen");
+            } else {
+                container.hide();
+                headlines.removeClass('vie-toggleUp').addClass('vie-toggleDown').attr('aria-expanded', 'false');
+                $(".vie-showall").text("Alle Informationen ausklappen");
+            }
+        });
+        // Printmöglichkeiten
+		$("#vie_artikelfunktionen-oben .vie-artikel-drucken a").click(function () {
+            $('body').addClass('vie-togglePrint');
+			window.print();
+        });
+        $("#vie_col2_content .vie-printall").click(function () {
+            $('body').removeClass('vie-togglePrint');
+			window.print();
+			return false
+        });
+    }
+});
+
+-->
